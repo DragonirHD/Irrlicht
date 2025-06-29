@@ -1,0 +1,21 @@
+@keyframes rotation-full {
+  from {
+    rotate: 0deg
+  }
+  from {
+    rotate: 360deg
+  }
+}
+
+.animation__icon-switch {
+  animation-name: rotation-full;
+  animation-duration: 0.5s;
+}
+
+@keyframes wobble {
+
+}
+
+.animation__title-wobble:hover {
+
+}
