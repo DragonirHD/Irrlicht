@@ -2,7 +2,7 @@
   <header>
     <mat-toolbar>
       <button #sidenavToggleButton class="sidenav-toggle-button" matIconButton
-              (click)="onSidenavToggleButtonClick($event)">
+              (click)="onSidenavToggleButtonClick()">
         @if (!sidenav?.opened) {
           <mat-icon>menu</mat-icon>
         } @else {
