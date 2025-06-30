@@ -7,15 +7,24 @@
   }
 }
 
-.animation__icon-switch {
+.animation__rotation-full {
   animation-name: rotation-full;
   animation-duration: 0.5s;
 }
 
 @keyframes wobble {
-
+  0% {
+    rotate: 0deg
+  }
+  20% {
+    rotate: 10deg
+  }
+  40% {
+    rotate: -10deg
+  }
 }
 
-.animation__title-wobble:hover {
-
+.animation__wobble {
+  animation-name: wobble;
+  animation-duration: 0.75s;
 }

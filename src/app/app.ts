@@ -7,6 +7,8 @@ import {MatDrawer, MatDrawerContainer} from '@angular/material/sidenav';
 import {ThemeToggleComponent} from '../components/theme-toggle/theme-toggle';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 import {MatList, MatListItem} from '@angular/material/list';
+import {AnimationHandler} from '../services/animation-handler';
+import {AnimationType} from '../common/classes/AnimationType';
 
 @Component({
   selector: 'app-root',
@@ -15,13 +17,39 @@ import {MatList, MatListItem} from '@angular/material/list';
   styleUrl: './app.scss'
 })
 export class App {
-  @ViewChild("sidenavToggleButton") sidenavToggleButton: MatIconButton | undefined;
   @ViewChild("sidenav") sidenav: MatDrawer | undefined;
+  @ViewChild("sidenavToggleButton") sidenavToggleButton: MatIconButton | undefined;
+
+  constructor(private readonly animationHandler: AnimationHandler) {
+  }
 
   protected onSidenavToggleButtonClick(): void {
-    this.sidenavToggleButton?._elementRef.nativeElement.classList.remove('animation__icon-switch');
-    void this.sidenavToggleButton?._elementRef.nativeElement.offsetWidth; //trigger reflow
-    this.sidenavToggleButton?._elementRef.nativeElement.classList.add('animation__icon-switch');
+    if (this.sidenavToggleButton) {
+      this.animationHandler.playOnce({
+        nativeElement: this.sidenavToggleButton._elementRef.nativeElement,
+        animationType: AnimationType.RotationFull,
+      });
+    }
     this.sidenav?.toggle();
+  }
+
+  protected onSiteNamePointerEnter(): void {
+    let siteNameElement = (document.getElementById("siteName"));
+    if (siteNameElement) {
+      this.animationHandler.playOnce({
+        nativeElement: siteNameElement,
+        animationType: AnimationType.Wobble,
+      });
+    }
+  }
+
+  protected onSiteNameClick(): void {
+    let siteNameElement = (document.getElementById("siteName"));
+    if (siteNameElement) {
+      this.animationHandler.playOnce({
+        nativeElement: siteNameElement,
+        animationType: AnimationType.Wobble,
+      });
+    }
   }
 }

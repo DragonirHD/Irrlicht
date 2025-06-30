@@ -21,6 +21,7 @@ export const routes: Routes = [
   {
     path: 'contact',
     loadComponent: () => import('../pages/contact/contact').then(m => m.Contact),
+    title: 'Contact',
   },
   //MUST ALWAYS BE THE LAST ITEM
   //wildcard argument in case user has inputted anything that isn't handled by routing.
