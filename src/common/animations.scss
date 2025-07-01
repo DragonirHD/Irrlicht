@@ -2,7 +2,7 @@
   from {
     rotate: 0deg
   }
-  from {
+  to {
     rotate: 360deg
   }
 }
@@ -10,6 +10,20 @@
 .animation__rotation-full {
   animation-name: rotation-full;
   animation-duration: 0.5s;
+}
+
+@keyframes rotation-half {
+  from {
+    rotate: 0deg
+  }
+  to {
+    rotate: 180deg
+  }
+}
+
+.animation__rotation-half {
+  animation-name: rotation-half;
+  animation-duration: 0.25s;
 }
 
 @keyframes wobble {

@@ -7,4 +7,5 @@ export class AnimationSettings {
    * can be used to overwrite the default duration in seconds.
    */
   duration?: number | undefined;
+  playReverse?: boolean = false;
 }

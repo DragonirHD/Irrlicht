@@ -1,6 +1,10 @@
 .drawer-container {
   width: 100%;
-  height: calc(100% - 64px);
+  height: calc(100dvh - 64px);
+
+  @media (max-width: 599px) {
+    height: calc(100dvh - 56px);
+  }
 }
 
 main {
@@ -13,6 +17,16 @@ main {
 
 .drawer {
   padding: 20px;
+}
+
+.sidenav-mode-toggle-button {
+  position: absolute;
+  top: calc(95dvh - 64px);
+  right: 5%;
+
+  @media (max-width: 599px) {
+    top: calc(95dvh - 56px);
+  }
 }
 
 

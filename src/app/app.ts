@@ -1,25 +1,28 @@
 import {Component, ViewChild} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {MatToolbar} from '@angular/material/toolbar';
-import {MatButton, MatIconButton} from '@angular/material/button';
+import {MatButtonModule, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
-import {MatDrawer, MatDrawerContainer} from '@angular/material/sidenav';
+import {MatDrawer, MatDrawerMode, MatSidenavModule} from '@angular/material/sidenav';
 import {ThemeToggleComponent} from '../components/theme-toggle/theme-toggle';
-import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
-import {MatList, MatListItem} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatListModule} from '@angular/material/list';
 import {AnimationHandler} from '../services/animation-handler';
 import {AnimationType} from '../common/classes/AnimationType';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatToolbar, MatIconButton, MatIcon, MatDrawerContainer, MatDrawer, ThemeToggleComponent, MatButton, MatMenuTrigger, MatMenu, MatMenuItem, RouterLink, MatList, MatListItem],
+  imports: [RouterOutlet, MatToolbar, MatIcon, MatSidenavModule, ThemeToggleComponent, MatButtonModule, MatMenuModule, RouterLink, MatListModule, MatTooltipModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
   @ViewChild("sidenav") sidenav: MatDrawer | undefined;
   @ViewChild("sidenavToggleButton") sidenavToggleButton: MatIconButton | undefined;
+  @ViewChild("sidenavModeToggleButton") sidenavModeToggleButton: MatIconButton | undefined;
 
+  protected sidenavMode: MatDrawerMode = "over";
   constructor(private readonly animationHandler: AnimationHandler) {
   }
 
@@ -31,6 +34,23 @@ export class App {
       });
     }
     this.sidenav?.toggle();
+  }
+
+  protected onSidenavModeToggleButtonClick(): void {
+    if (this.sidenav?.mode == "over") {
+      this.sidenavMode = "side";
+    } else {
+      this.sidenavMode = "over";
+    }
+
+    if (this.sidenavModeToggleButton) {
+      console.log(this.sidenavMode)
+      this.animationHandler.playOnce({
+        nativeElement: this.sidenavModeToggleButton?._elementRef.nativeElement,
+        animationType: AnimationType.RotationHalf,
+        playReverse: this.sidenavMode == "side"
+      });
+    }
   }
 
   protected onSiteNamePointerEnter(): void {
