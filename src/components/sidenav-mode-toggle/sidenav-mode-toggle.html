@@ -1,0 +1,13 @@
+<button
+  matIconButton
+  #sidenavModeToggleButton
+  (click)="onSidenavModeToggleButtonClick()"
+  matTooltip="change side navigation mode"
+  class="sidenav-mode-toggle-button"
+>
+  @if (sidenav().mode == "over") {
+    <mat-icon fontSet="material-symbols-outlined">arrow_menu_open</mat-icon>
+  } @else {
+    <mat-icon fontSet="material-symbols-outlined">arrow_menu_close</mat-icon>
+  }
+</button>

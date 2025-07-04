@@ -25,7 +25,7 @@
   </header>
 
   <mat-drawer-container class="drawer-container">
-    <mat-drawer #sidenav class="drawer" [mode]="sidenavMode">
+    <mat-drawer #sidenav class="drawer">
       <mat-list>
         <mat-list-item>
           <button matButton [routerLink]="['']">
@@ -48,19 +48,7 @@
           <button matButton [routerLink]="['contact']">Contact</button>
         </mat-list-item>
       </mat-list>
-      <button
-        matIconButton
-        #sidenavModeToggleButton
-        (click)="onSidenavModeToggleButtonClick()"
-        matTooltip="change side navigation mode"
-        class="sidenav-mode-toggle-button"
-      >
-        @if (sidenav.mode == "over") {
-          <mat-icon fontSet="material-symbols-outlined">arrow_menu_open</mat-icon>
-        } @else {
-          <mat-icon fontSet="material-symbols-outlined">arrow_menu_close</mat-icon>
-        }
-      </button>
+      <sidenav-mode-toggle [sidenav]="sidenav"/>
     </mat-drawer>
     <router-outlet/>
   </mat-drawer-container>

@@ -19,15 +19,7 @@ main {
   padding: 20px;
 }
 
-.sidenav-mode-toggle-button {
-  position: absolute;
-  top: calc(95dvh - 64px);
-  right: 5%;
 
-  @media (max-width: 599px) {
-    top: calc(95dvh - 56px);
-  }
-}
 
 
 //base stuff
