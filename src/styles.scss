@@ -23,7 +23,12 @@ body {
 
   @include mat.toolbar-overrides((
     container-background-color: var(--mat-sys-secondary),
-  ))
+  ));
+
+  @include mat.sidenav-overrides((
+    container-shape: 0%,
+    container-width: 180px,
+  ));
 }
 
 header {

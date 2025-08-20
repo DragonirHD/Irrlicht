@@ -1,11 +1,10 @@
-<main style="padding: 20px">
-  <mat-card class="gradient-border" style="height: 200px">
-    <mat-card-header>
-      my project
-    </mat-card-header>
-
-    <mat-card-content>
-      my card content
-    </mat-card-content>
-  </mat-card>
+<main>
+  <mat-tab-group headerPosition="below">
+    @for (project of projects; track project) {
+      <mat-tab>
+        <ng-template mat-tab-label>{{ project.title }}</ng-template>
+        <project-summary-base [project]="project"/>
+      </mat-tab>
+    }
+  </mat-tab-group>
 </main>

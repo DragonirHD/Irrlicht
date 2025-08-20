@@ -1,25 +1,34 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {MatCard, MatCardContent, MatCardHeader} from '@angular/material/card';
+import {MatTab, MatTabGroup, MatTabLabel} from '@angular/material/tabs';
+import {ProjectSummaryBase} from './project-summary-base/project-summary-base';
+import {ProjectService} from '../../services/project-service';
+import {Project} from '../../common/classes/Project';
 
 @Component({
   selector: 'projects',
   imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardContent
+    MatTabGroup,
+    MatTab,
+    MatTabLabel,
+    ProjectSummaryBase
   ],
   templateUrl: './projects.html',
   styleUrl: './projects.scss'
 })
 export class Projects implements OnInit {
+  protected projects: Project[] = [];
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private projectService: ProjectService) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.route.params.subscribe(params => {
+      //TODO change shown project depending on uri params
       console.log(params);
     })
+
+    this.projects = await this.projectService.getProjects();
+    console.log(this.projects);
   }
 }
