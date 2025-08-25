@@ -14,6 +14,8 @@ export class ProjectService {
     'test2',
   ];
 
+  assetFolderName: string = 'assets';
+
   constructor(private http: HttpClient) {
   }
 
@@ -27,8 +29,9 @@ export class ProjectService {
     const projects: Project[] = [];
     for (const folderName of this.projectFolderNames) {
       const infoFilePath = `${this.projectFileFolderPath}${folderName}/projectInfo.json`;
-      this.http.get(infoFilePath).subscribe((res) => {
-          projects.push(res as Project);
+      this.http.get<Project>(infoFilePath).subscribe((project) => {
+        project = this.populateImageUrls(project, folderName);
+        projects.push(project);
         }
       );
     }
@@ -39,5 +42,37 @@ export class ProjectService {
     });
 
     return projects;
+  }
+
+  /**
+   * uses the given `imageName` properties in the project to locate and save the corresponding `imageUrl` (file paths) into the project.
+   *
+   * If no name is given for a specific image type, the corresponding url will be left as an empty string
+   *
+   * @remarks
+   * Doesn't check if there is a valid file at the given path. If an `imageName` property is defined but no file with that name is present in the folder structure, the path wil still be generated, pointing to a nonexistent file.
+   */
+  private populateImageUrls(unpopulatedProject: Project, folderName: string): Project {
+    const project = structuredClone(unpopulatedProject);
+    //populate coverImage
+    if (project.coverImageName) {
+      project.coverImageUrl = `${this.projectFileFolderPath}${folderName}/${this.assetFolderName}/${project.coverImageName}`;
+    }
+
+    //populate summary images
+    if (project.summaryImagesNames) {
+      project.summaryImagesNames.forEach((imageName) => {
+        project.summaryImagesUrls.push(`${this.projectFileFolderPath}${folderName}/${this.assetFolderName}/${imageName}`);
+      });
+    }
+
+    //populate main images
+    if (project.mainImagesNames) {
+      project.mainImagesNames.forEach((imageName) => {
+        project.mainImagesUrls.push(`${this.projectFileFolderPath}${folderName}/${this.assetFolderName}/${imageName}`);
+      });
+    }
+
+    return project;
   }
 }

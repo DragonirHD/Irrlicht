@@ -4,6 +4,7 @@ import {MatTab, MatTabGroup, MatTabLabel} from '@angular/material/tabs';
 import {ProjectSummaryBase} from './project-summary-base/project-summary-base';
 import {ProjectService} from '../../services/project-service';
 import {Project} from '../../common/classes/Project';
+import {CardSelector} from '../../components/card-selector/card-selector';
 
 @Component({
   selector: 'projects',
@@ -11,7 +12,8 @@ import {Project} from '../../common/classes/Project';
     MatTabGroup,
     MatTab,
     MatTabLabel,
-    ProjectSummaryBase
+    ProjectSummaryBase,
+    CardSelector,
   ],
   templateUrl: './projects.html',
   styleUrl: './projects.scss'

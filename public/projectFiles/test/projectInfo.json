@@ -1,7 +1,9 @@
 {
   "title": "test",
   "index": 0,
+  "oneLine": "My first real project",
   "summary": "lorem Ipsum",
   "mainText": "Main Text Main Text Main Text",
-  "workedHours": 3
+  "workedHours": 3,
+  "coverImageName": "coverImage.jpg"
 }

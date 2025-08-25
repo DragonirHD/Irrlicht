@@ -1,0 +1,9 @@
+//Only define static variables here that will not need to change at runtime.
+//The variables here should mainly be for cases where css variables don't work, e.g. variables used in @media queries.
+//all other variables should be defined in the :root class of styles.scss
+
+$mobile-max-width: 599px;
+$desktop-min-width: 600px;
+$desktop-max-width: 1440px;
+$widescreen-min-width: 1441px;
+

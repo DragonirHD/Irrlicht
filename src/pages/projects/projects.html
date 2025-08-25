@@ -7,4 +7,11 @@
       </mat-tab>
     }
   </mat-tab-group>
+  @for (project of projects; track project) {
+    <card-selector
+      [title]="project.title"
+      [subtitle]="project.oneLine"
+      [imageUrl]="project.coverImageUrl"
+    />
+  }
 </main>

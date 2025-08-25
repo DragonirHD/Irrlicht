@@ -10,7 +10,7 @@ import {Project} from '../../../common/classes/Project';
     MatCardHeader
   ],
   templateUrl: './project-summary-base.html',
-  styleUrl: './project-summary-base.css'
+  styleUrl: './project-summary-base.scss'
 })
 export class ProjectSummaryBase {
   project = input.required<Project>();

@@ -1,14 +1,27 @@
+@use '../customVariables';
+
 .drawer-container {
   width: 100%;
   height: calc(100dvh - 64px);
 
-  @media (max-width: 599px) {
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
     height: calc(100dvh - 56px);
   }
 }
 
 main {
-  height: 100%;
+  height: calc(100% - 60px);
+  padding-block: 30px;
+  padding-inline: 20dvw;
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    padding-inline: 5vw;
+  }
+  @media only screen and (min-width: customVariables.$desktop-min-width) and (max-width: customVariables.$desktop-max-width) {
+    padding-inline: 20dvw;
+  }
+  @media only screen and (min-width: customVariables.$widescreen-min-width) {
+    padding-inline: 30dvw;
+  }
 }
 
 .toolbar-spacer {

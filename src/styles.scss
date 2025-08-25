@@ -1,6 +1,11 @@
 @use '@angular/material' as mat;
 @use 'common/animations.scss';
 
+//custom global variable declaration
+:root {
+  --custom-mobile-width: 599px;
+}
+
 html {
   height: 100dvh;
   color-scheme: light dark;
@@ -45,6 +50,10 @@ body.theme-light {
 
 .gradient-border {
   $border: 5px;
+  margin: $border;
+
+  background-clip: padding-box;
+  border: solid $border transparent;
 
   &:before {
     content: '';

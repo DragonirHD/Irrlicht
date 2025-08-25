@@ -1,0 +1,41 @@
+mat-card {
+  width: 100%;
+  height: 110px;
+
+  //removing border right to have nothing in between the card and the button
+  /*border-right: unset;
+  border-bottom-right-radius: unset;
+  border-top-right-radius: unset;*/
+
+  background-image: linear-gradient(to bottom right, transparent, black), var(--card-background-image-url);
+  //additional settings for the background image
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  width: inherit;
+  box-shadow: unset;
+  margin-left: auto;
+  background-color: transparent;
+}
+
+button:hover {
+  box-shadow: unset;
+  background-color: unset;
+}
+
+mat-card:hover {
+  background-image: linear-gradient(to bottom right, transparent, black 50%), var(--card-background-image-url);
+}
