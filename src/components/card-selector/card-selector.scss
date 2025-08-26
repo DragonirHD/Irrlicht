@@ -1,22 +1,20 @@
+@use '../../customVariables';
+
 mat-card {
   width: 100%;
   height: 110px;
+  cursor: pointer;
+  margin-block: 10px;
 
-  //removing border right to have nothing in between the card and the button
-  /*border-right: unset;
-  border-bottom-right-radius: unset;
-  border-top-right-radius: unset;*/
-
-  background-image: linear-gradient(to bottom right, transparent, black), var(--card-background-image-url);
-  //additional settings for the background image
+  //additional settings for the background image which gets set in the html
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-}
 
-div {
-  display: flex;
-  flex-direction: row;
+  //needed to cut off the parts of the ::before element that go outside of the mat-card
+  overflow: hidden;
+
+  transition: all 0.5s ease;
 }
 
 mat-card-content {
@@ -24,18 +22,56 @@ mat-card-content {
   flex-direction: row;
 }
 
-button {
+mat-icon {
   width: inherit;
-  box-shadow: unset;
   margin-left: auto;
-  background-color: transparent;
+  top: -16px;
+  height: 94px;
+  font-size: 70px;
+  position: relative;
+  opacity: 0.5;
+  transition: opacity 0.5s ease;
 }
 
-button:hover {
-  box-shadow: unset;
-  background-color: unset;
+.holoCard::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+      0deg,
+      transparent,
+      transparent 30%,
+      rgba(95, 95, 95, 0.3)
+  );
+  transform: rotate(-45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
 }
 
 mat-card:hover {
-  background-image: linear-gradient(to bottom right, transparent, black 50%), var(--card-background-image-url);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(95, 95, 95, 0.3);
+
+  mat-icon {
+    opacity: 0.75;
+  }
+}
+
+.holoCard:hover::before {
+  opacity: 1;
+
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    transform: rotate(-45deg) translateY(30dvw);
+  }
+
+  @media only screen and (min-width: customVariables.$desktop-min-width) and (max-width: customVariables.$desktop-max-width) {
+    transform: rotate(-45deg) translateY(13dvw);
+  }
+
+  @media only screen and (min-width: customVariables.$widescreen-min-width) {
+    transform: rotate(-45deg) translateY(10dvw);
+  }
 }
