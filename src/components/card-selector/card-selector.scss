@@ -14,25 +14,37 @@ mat-card {
   //needed to cut off the parts of the ::before element that go outside of the mat-card
   overflow: hidden;
 
+  //general animation setup
   transition: all 0.5s ease;
 }
 
+mat-card-header {
+  font: var(--mat-sys-display-small);
+}
+
 mat-card-content {
+  padding-left: 45px;
+  font: var(--mat-sys-body-large);
+
+  //needed for icon positioning
   display: flex;
   flex-direction: row;
 }
 
 mat-icon {
   width: inherit;
+  height: 70px;
   margin-left: auto;
-  top: -16px;
-  height: 94px;
-  font-size: 70px;
   position: relative;
+  top: -40px;
+  font-size: 70px;
+
+  //opacity animation setup
   opacity: 0.5;
   transition: opacity 0.5s ease;
 }
 
+//initial values for the holo overlay
 .holoCard::before {
   content: '';
   position: absolute;
@@ -47,8 +59,10 @@ mat-icon {
       rgba(95, 95, 95, 0.3)
   );
   transform: rotate(-45deg);
-  transition: all 0.5s ease;
+
+  //opacity and position animation setup
   opacity: 0;
+  transition: all 0.5s ease;
 }
 
 mat-card:hover {
@@ -60,6 +74,7 @@ mat-card:hover {
   }
 }
 
+//animation of the holo overlay, adjusted for different screen sizes
 .holoCard:hover::before {
   opacity: 1;
 
