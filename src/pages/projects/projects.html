@@ -1,8 +1,21 @@
 <main>
-  <mat-tab-group headerPosition="below">
+  <mat-tab-group
+    #summaryTabGroup
+    [(selectedIndex)]="summaryTabGroupSelectedIndex"
+    fitInkBarToContent
+    mat-stretch-tabs="false"
+    mat-align-tabs="center"
+    headerPosition="below"
+    (touchstart)="lastTouchStart.set($event.touches[0])"
+    (touchmove)="lastTouchMove.set($event.touches[0])"
+    (touchend)="summarySwipeEnd()"
+    (touchcancel)="summarySwipeCancel()"
+  >
     @for (project of projects; track project) {
       <mat-tab>
-        <ng-template mat-tab-label>{{ project.title }}</ng-template>
+        <ng-template mat-tab-label>
+          <span class="tab-selector"></span>
+        </ng-template>
         <project-summary-base [project]="project"/>
       </mat-tab>
     }

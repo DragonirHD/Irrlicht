@@ -34,6 +34,44 @@ body {
     container-shape: 0%,
     container-width: 180px,
   ));
+
+  //START MAT TAB OVERRIDES
+
+  @include mat.tabs-overrides((
+    divider-height: 5px,
+    divider-color: transparent,
+    container-height: 35px,
+  ));
+
+  .mdc-tab {
+    min-width: unset !important;
+    padding: 0 10px !important;
+    border-radius: 50%;
+
+    .mat-ripple {
+      border-radius: 50% !important;
+    }
+
+    .mdc-tab__ripple::before {
+      border-radius: 50% !important;
+    }
+
+    .mdc-tab__text-label {
+      transition: all 0.5s ease;
+    }
+  }
+
+  .mdc-tab--active {
+    .mdc-tab__text-label {
+      transform: scale(1.5);
+    }
+  }
+
+  .mdc-tab:hover {
+    .mdc-tab__text-label {
+      transform: scale(1.5);
+    }
+  }
 }
 
 header {
@@ -49,7 +87,7 @@ body.theme-light {
 }
 
 .gradient-border {
-  $border: 5px;
+  $border: 10px;
   margin: $border;
 
   background-clip: padding-box;
