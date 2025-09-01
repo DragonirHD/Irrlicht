@@ -15,7 +15,7 @@ export const routes: Routes = [
     title: 'Project Overview',
   },
   {
-    path: 'projects/:id', //path to specific project
+    path: 'projects/:projectName', //path to specific project
     loadComponent: () => import('../pages/projects/projects').then(m => m.Projects),
   },
   {

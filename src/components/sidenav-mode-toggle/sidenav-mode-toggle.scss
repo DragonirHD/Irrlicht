@@ -1,0 +1,11 @@
+@use '../../customVariables';
+
+.sidenav-mode-toggle-button {
+  position: absolute;
+  top: calc(95dvh - #{customVariables.$desktop-toolbar-height});
+  right: 5%;
+
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    top: calc(95dvh - #{customVariables.$mobile-toolbar-height});
+  }
+}

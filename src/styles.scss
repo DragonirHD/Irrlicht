@@ -1,9 +1,14 @@
 @use '@angular/material' as mat;
+@use 'customVariables';
 @use 'common/animations.scss';
 
 //custom global variable declaration
 :root {
-  --custom-mobile-width: 599px;
+  //the following variables are set and updated in sidenav-mode-toggle.ts
+  --sidenav-open: false; //true if the sidenav is open
+  --sidenav-mode: ""; //string of the current MatDrawerMode that the sidenav is in
+  --sidenav-width: #{customVariables.$sidenav-width};
+  --sidenav-open-width: 0px; //set to the same value as --sidenav-width but only when sidenav is open
 }
 
 html {
@@ -26,9 +31,21 @@ body {
     density: 0,
   ));
 
+  //START MAT TOOLBAR OVERRIDES
+
   @include mat.toolbar-overrides((
     container-background-color: var(--mat-sys-secondary),
   ));
+
+  mat-toolbar {
+    height: customVariables.$mobile-toolbar-height !important;
+
+    @media only screen and (min-width: customVariables.$desktop-min-width) {
+      height: customVariables.$desktop-toolbar-height !important;
+    }
+  }
+
+  //START MAT SIDENAV OVERRIDES
 
   @include mat.sidenav-overrides((
     container-shape: 0%,

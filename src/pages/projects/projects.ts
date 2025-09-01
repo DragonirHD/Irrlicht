@@ -25,7 +25,10 @@ export class Projects implements OnInit {
   protected lastTouchStart: WritableSignal<Touch | undefined> = signal(undefined);
   protected lastTouchMove: WritableSignal<Touch | undefined> = signal(undefined);
 
-  constructor(private route: ActivatedRoute, private projectService: ProjectService) {
+  constructor(
+    private route: ActivatedRoute,
+    private projectService: ProjectService
+  ) {
   }
 
   async ngOnInit() {

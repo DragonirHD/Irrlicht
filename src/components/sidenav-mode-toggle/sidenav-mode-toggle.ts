@@ -14,7 +14,7 @@ import {AnimationHandler} from '../../services/animation-handler';
     MatTooltip
   ],
   templateUrl: './sidenav-mode-toggle.html',
-  styleUrl: './sidenav-mode-toggle.css'
+  styleUrl: './sidenav-mode-toggle.scss'
 })
 export class SidenavModeToggle {
   @ViewChild("sidenavModeToggleButton") sidenavModeToggleButton: MatIconButton | undefined;
@@ -43,6 +43,7 @@ export class SidenavModeToggle {
     effect(() => {
       if (this.sidenav()) {
         this.sidenav().mode = this.currentSidenavMode();
+        this.updateGlobalVariables();
       }
     });
   }
@@ -63,5 +64,14 @@ export class SidenavModeToggle {
         playReverse: this.currentSidenavMode() == "side"
       });
     }
+  }
+
+  //used to update global css variables so that other elements can easily adjust to state changes of the sidenav.
+  private updateGlobalVariables(): void {
+    const root = document.documentElement;
+    root.style.setProperty("--sidenav-mode", this.currentSidenavMode());
+    root.style.setProperty("--sidenav-open", this.sidenav().opened ? "true" : "false");
+    root.style.setProperty("--sidenav-open-width", this.sidenav().opened ? window.getComputedStyle(root).getPropertyValue('--sidenav-width') : "0px");
+    console.log(window.getComputedStyle(root).getPropertyValue('--sidenav-width'));
   }
 }

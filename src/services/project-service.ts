@@ -6,10 +6,10 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root',
 })
 export class ProjectService {
-  projectFileFolderPath: string = "../projectFiles/";
+  public readonly projectFileFolderPath: string = "../projectFiles/";
   //array of all project names / file names in the projectFiles folder.
   //Needs to be updated when adding a new project.
-  projectFolderNames: string[] = [
+  public readonly projectFolderNames: string[] = [
     'test',
     'test2',
   ];

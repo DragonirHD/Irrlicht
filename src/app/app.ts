@@ -11,6 +11,7 @@ import {AnimationHandler} from '../services/animation-handler';
 import {AnimationType} from '../common/classes/AnimationType';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {SidenavModeToggle} from '../components/sidenav-mode-toggle/sidenav-mode-toggle';
+import {ProjectService} from '../services/project-service';
 
 @Component({
   selector: 'app-root',
@@ -22,13 +23,21 @@ export class App {
   @ViewChild("sidenav") sidenav: MatDrawer | undefined;
   @ViewChild("sidenavToggleButton") sidenavToggleButton: MatIconButton | undefined;
 
-  constructor(private readonly animationHandler: AnimationHandler, private router: Router) {
+  protected projectNames: string[];
+
+  constructor(
+    private readonly animationHandler: AnimationHandler,
+    private readonly router: Router,
+    private readonly projectService: ProjectService
+  ) {
     //on routing changes, the sidenav should close if it is in the "over" mode.
     this.router.events.subscribe(() => {
       if (this.sidenav?.mode == "over") {
         this.sidenav.close();
       }
-    })
+    });
+
+    this.projectNames = this.projectService.projectFolderNames;
   }
 
   protected onSidenavToggleButtonClick(): void {

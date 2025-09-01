@@ -40,8 +40,9 @@
           </button>
           <mat-menu #projectMenu>
             <button mat-menu-item [routerLink]="['projects']"><b>Overview</b></button>
-            <button mat-menu-item [routerLink]="['projects/0']">Project 1</button>
-            <button mat-menu-item [routerLink]="['projects/2']">Project 2</button>
+            @for (projectName of projectNames; track projectName) {
+              <button mat-menu-item [routerLink]="[`projects/${projectName}`]">{{ projectName }}</button>
+            }
           </mat-menu>
         </mat-list-item>
         <mat-list-item>

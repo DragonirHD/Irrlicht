@@ -2,8 +2,14 @@
 //The variables here should mainly be for cases where css variables don't work, e.g. variables used in @media queries.
 //all other variables should be defined in the :root class of styles.scss
 
+//breakpoints
 $mobile-max-width: 599px;
 $desktop-min-width: 600px;
 $desktop-max-width: 1440px;
 $widescreen-min-width: 1441px;
+
+$mobile-toolbar-height: 56px;
+$desktop-toolbar-height: 64px;
+
+$sidenav-width: 300px;
 
