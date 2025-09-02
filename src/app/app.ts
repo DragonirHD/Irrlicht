@@ -4,14 +4,14 @@ import {MatToolbar} from '@angular/material/toolbar';
 import {MatButtonModule, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
-import {ThemeToggleComponent} from '../components/theme-toggle/theme-toggle';
+import {ThemeToggleComponent} from './common/components/theme-toggle/theme-toggle';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatListModule} from '@angular/material/list';
-import {AnimationHandler} from '../services/animation-handler';
-import {AnimationType} from '../common/classes/AnimationType';
+import {AnimationHandler} from './services/animation-handler';
+import {AnimationType} from './common/classes/AnimationType';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {SidenavModeToggle} from '../components/sidenav-mode-toggle/sidenav-mode-toggle';
-import {ProjectService} from '../services/project-service';
+import {SidenavModeToggle} from './common/components/sidenav-mode-toggle/sidenav-mode-toggle';
+import {ProjectService} from './services/project-service';
 
 @Component({
   selector: 'app-root',

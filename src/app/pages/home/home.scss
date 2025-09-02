@@ -1,4 +1,4 @@
-@use '../../customVariables';
+@use '../../../customVariables';
 
 #cursorLight {
   background: radial-gradient(
@@ -31,6 +31,6 @@
 }
 
 .mission-container {
-  background: black;
+  background: white;
   height: 200vh;
 }

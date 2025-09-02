@@ -1,0 +1,15 @@
+@use '../customVariables';
+
+.p-container {
+  padding-block: 30px;
+  padding-inline: 20dvw;
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    padding-inline: 5vw;
+  }
+  @media only screen and (min-width: customVariables.$desktop-min-width) and (max-width: customVariables.$desktop-max-width) {
+    padding-inline: 20dvw;
+  }
+  @media only screen and (min-width: customVariables.$widescreen-min-width) {
+    padding-inline: 30dvw;
+  }
+}

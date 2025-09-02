@@ -9,21 +9,6 @@
   }
 }
 
-main {
-  height: calc(100% - 60px);
-  padding-block: 30px;
-  padding-inline: 20dvw;
-  @media only screen and (max-width: customVariables.$mobile-max-width) {
-    padding-inline: 5vw;
-  }
-  @media only screen and (min-width: customVariables.$desktop-min-width) and (max-width: customVariables.$desktop-max-width) {
-    padding-inline: 20dvw;
-  }
-  @media only screen and (min-width: customVariables.$widescreen-min-width) {
-    padding-inline: 30dvw;
-  }
-}
-
 .toolbar-spacer {
   flex: 1 1 auto;
 }
@@ -33,9 +18,6 @@ main {
   padding: 20px;
   border-right: 1px solid var(--mat-sys-primary);
 }
-
-
-
 
 //base stuff
 /*

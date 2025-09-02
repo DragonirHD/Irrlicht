@@ -1,5 +1,5 @@
 import {Routes} from '@angular/router';
-import {Home} from '../pages/home/home';
+import {Home} from './pages/home/home';
 
 export const routes: Routes = [
   //eagerly load home component, as this will always be displayed directly when opening the site
@@ -11,16 +11,16 @@ export const routes: Routes = [
   //lazy load all other pages
   {
     path: 'projects', //path to the overview of all projects
-    loadComponent: () => import('../pages/projects/projects').then(m => m.Projects),
+    loadComponent: () => import('./pages/projects/projects').then(m => m.Projects),
     title: 'Project Overview',
   },
   {
     path: 'projects/:projectName', //path to specific project
-    loadComponent: () => import('../pages/projects/projects').then(m => m.Projects),
+    loadComponent: () => import('./pages/projects/projects').then(m => m.Projects),
   },
   {
     path: 'contact',
-    loadComponent: () => import('../pages/contact/contact').then(m => m.Contact),
+    loadComponent: () => import('./pages/contact/contact').then(m => m.Contact),
     title: 'Contact',
   },
   //MUST ALWAYS BE THE LAST ITEM

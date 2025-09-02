@@ -3,8 +3,8 @@ import {MatIconButton} from "@angular/material/button";
 import {MatIcon} from '@angular/material/icon';
 import {MatTooltip} from '@angular/material/tooltip';
 import {MatDrawer, MatDrawerMode} from '@angular/material/sidenav';
-import {AnimationType} from '../../common/classes/AnimationType';
-import {AnimationHandler} from '../../services/animation-handler';
+import {AnimationType} from '../../classes/AnimationType';
+import {AnimationHandler} from '../../../services/animation-handler';
 
 @Component({
   selector: 'sidenav-mode-toggle',

@@ -1,6 +1,8 @@
 @use '@angular/material' as mat;
 @use 'customVariables';
-@use 'common/animations.scss';
+@use 'app/common/animations';
+
+@import 'customStyles/p-container';
 
 //custom global variable declaration
 :root {

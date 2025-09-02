@@ -20,15 +20,14 @@ export class Home implements AfterViewInit {
     document.body.onpointermove = (event: PointerEvent) => {
       this.cursorTop = event.clientY;
       this.cursorLeft = event.clientX;
-    }
+    };
 
     //get the scrollTop amount to calculate the position of the cursorLight.
     //else it would not move with the content when a scroll event occurs.
     const drawerContent = document.getElementsByClassName("mat-drawer-content")[0];
     drawerContent.addEventListener("scroll", () => {
-      console.log(drawerContent.scrollTop);
       this.scrollTop = drawerContent.scrollTop;
-    })
+    });
   }
 
   protected get cursorLightCssVariables(): Record<string, string> {
