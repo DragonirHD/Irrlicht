@@ -35,8 +35,9 @@
         </mat-list-item>
         <mat-list-item>
           <button matButton [matMenuTriggerFor]="projectMenu">
-            <mat-icon iconPositionEnd>arrow_drop_down</mat-icon>
+            <mat-icon>flag</mat-icon>
             Projects
+            <mat-icon iconPositionEnd>arrow_drop_down</mat-icon>
           </button>
           <mat-menu #projectMenu>
             <button mat-menu-item [routerLink]="['projects']"><b>Overview</b></button>
@@ -46,7 +47,10 @@
           </mat-menu>
         </mat-list-item>
         <mat-list-item>
-          <button matButton [routerLink]="['contact']">Contact</button>
+          <button matButton [routerLink]="['contact']">
+            <mat-icon>chat</mat-icon>
+            Contact
+          </button>
         </mat-list-item>
       </mat-list>
       <sidenav-mode-toggle [sidenav]="sidenav"/>

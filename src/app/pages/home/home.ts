@@ -1,40 +1,50 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, signal, ViewChild, WritableSignal} from '@angular/core';
 import {NgStyle} from '@angular/common';
 
 @Component({
   selector: 'home',
+  templateUrl: './home.html',
   imports: [
     NgStyle
   ],
-  templateUrl: './home.html',
   styleUrl: './home.scss'
 })
-export class Home implements AfterViewInit {
-  @ViewChild('cursorLight') cursorLight = HTMLElement;
-  protected cursorTop: number = 0;
-  protected cursorLeft: number = 0;
-  protected scrollTop: number = 0;
+export class Home implements AfterViewInit, OnDestroy {
+  @ViewChild('pixelsOverlayContainer') pixelsOverlayContainer: ElementRef | undefined;
+  protected pixelsSize: number = 72; //height and with of the pixels in px (best case a number that is dividable by 16 and 9 for good tiling on different screen sizes).
+  protected pixels: WritableSignal<{ id: number, color: number }[]> = signal([]);
+  private resizeObserver: ResizeObserver | undefined;
 
   ngAfterViewInit() {
-    //get the position of the cursor to adjust the position of the cursorLight accordingly
-    document.body.onpointermove = (event: PointerEvent) => {
-      this.cursorTop = event.clientY;
-      this.cursorLeft = event.clientX;
-    };
-
-    //get the scrollTop amount to calculate the position of the cursorLight.
-    //else it would not move with the content when a scroll event occurs.
-    const drawerContent = document.getElementsByClassName("mat-drawer-content")[0];
-    drawerContent.addEventListener("scroll", () => {
-      this.scrollTop = drawerContent.scrollTop;
-    });
-  }
-
-  protected get cursorLightCssVariables(): Record<string, string> {
-    return {
-      '--cursorLightTop': `${this.cursorTop}px`,
-      '--cursorLightLeft': `${this.cursorLeft}px`,
-      '--scrollTop': `${this.scrollTop}px`,
+    if (this.pixelsOverlayContainer) {
+      this.resizeObserver = new ResizeObserver(() => {
+        this.adjustPixelsToContainerSize();
+      });
+      this.resizeObserver.observe(this.pixelsOverlayContainer.nativeElement);
     }
   }
+
+  ngOnDestroy() {
+    this.resizeObserver?.unobserve(this.pixelsOverlayContainer?.nativeElement);
+  }
+
+  private adjustPixelsToContainerSize() {
+    if (this.pixelsOverlayContainer) {
+      this.pixels.set([]); //reset pixels in case we already had generated pixels before.
+      const horizontalPixelsCount = Math.floor(this.pixelsOverlayContainer.nativeElement.offsetWidth / this.pixelsSize);
+      const verticalPixelsCount = Math.floor(this.pixelsOverlayContainer.nativeElement.offsetHeight / this.pixelsSize);
+      const pixelsAmount = horizontalPixelsCount * verticalPixelsCount;
+
+      //generate the pixels
+      for (let i = 0; i < pixelsAmount; i++) {
+        const randomColor = Math.floor(Math.random() * 3);
+        const pixel = {id: i, color: randomColor};
+        this.pixels.update(values => {
+          return [...values, pixel]
+        });
+      }
+    }
+  }
+
+  //TODO create alternative animation for pixels for mobile users -> randomly turn on the hover state on some of the pixels
 }

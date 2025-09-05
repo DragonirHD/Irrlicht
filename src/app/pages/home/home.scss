@@ -1,36 +1,48 @@
 @use '../../../customVariables';
 
-#cursorLight {
-  background: radial-gradient(
-      transparent 5%,
-      black 10%,
-      black
-  );
-  border-radius: 50%;
-  height: 500%;
-  aspect-ratio: 1;
-  top: calc(var(--cursorLightTop) + var(--scrollTop) - #{customVariables.$desktop-toolbar-height} - 30px);
-  left: calc(var(--cursorLightLeft) - var(--sidenav-open-width));
-  transform: translate(-50%, -50%);
-  position: absolute;
-  transition: all 0.05s ease;
-  pointer-events: none;
-
-  @media only screen and (max-width: customVariables.$mobile-max-width) {
-    top: calc(var(--cursorLightTop) + var(--scrollTop) - #{customVariables.$mobile-toolbar-height} - 30px);
-  }
+.mission-container-pixels {
+  height: 80%;
+  font-size: 40px;
+  text-align: center;
+  text-transform: capitalize;
 }
 
-.mission-container-overlay {
+.mission-container-pixels p {
+  font-size: 80px;
+}
+
+.pixels-overlay-container {
   position: absolute;
   left: 0;
-  height: 100%;
+  height: 80%;
   width: 100%;
-  overflow: hidden;
-  pointer-events: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
-.mission-container {
-  background: white;
-  height: 200vh;
+.pixel {
+  opacity: 0;
+  transition: opacity 2s ease 0.5s;
+}
+
+.pixel:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.pixel-0 {
+  background-color: var(--mat-sys-primary);
+}
+
+.pixel-1 {
+  background-color: var(--mat-sys-secondary);
+}
+
+.pixel-2 {
+  background-color: var(--mat-sys-tertiary);
+}
+
+.content-pane {
+  height: 50vh;
 }

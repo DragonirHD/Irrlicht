@@ -1,12 +1,14 @@
 <main>
-  <div class="mission-container-overlay">
-    <div
-      #cursorLight
-      id="cursorLight"
-      [ngStyle]="cursorLightCssVariables"
-    ></div>
+  <div #pixelsOverlayContainer class="pixels-overlay-container">
+    @if (pixels().length > 0) {
+      @for (pixel of pixels(); track pixel.id) {
+        <div class="pixel pixel-{{pixel.color}}" [ngStyle]="{'width': pixelsSize + 'px', 'height': pixelsSize + 'px'}">
+        </div>
+      }
+    }
   </div>
-  <div class="mission-container">
-    <span>hello demons</span>
+  <div class="mission-container-pixels p-container">
+    creating stories <p>pixel</p> by <p>pixel</p>
   </div>
+  <div class="content-pane"></div>
 </main>

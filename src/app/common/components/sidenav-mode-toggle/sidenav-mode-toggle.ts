@@ -72,6 +72,5 @@ export class SidenavModeToggle {
     root.style.setProperty("--sidenav-mode", this.currentSidenavMode());
     root.style.setProperty("--sidenav-open", this.sidenav().opened ? "true" : "false");
     root.style.setProperty("--sidenav-open-width", this.sidenav().opened ? window.getComputedStyle(root).getPropertyValue('--sidenav-width') : "0px");
-    console.log(window.getComputedStyle(root).getPropertyValue('--sidenav-width'));
   }
 }
