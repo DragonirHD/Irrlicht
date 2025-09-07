@@ -1,8 +1,15 @@
 <main>
-  <div #pixelsOverlayContainer class="pixels-overlay-container">
+  <div
+    #pixelsOverlayContainer
+    class="pixels-overlay-container"
+  >
     @if (pixels().length > 0) {
       @for (pixel of pixels(); track pixel.id) {
-        <div class="pixel pixel-{{pixel.color}}" [ngStyle]="{'width': pixelsSize + 'px', 'height': pixelsSize + 'px'}">
+        <div
+          id="pixel-number-{{pixel.id}}"
+          class="pixel pixel-type-{{pixel.color}}"
+          [ngStyle]="{'width': pixelsSize + 'px', 'height': pixelsSize + 'px'}"
+        >
         </div>
       }
     }
@@ -10,5 +17,7 @@
   <div class="mission-container-pixels p-container">
     creating stories <p>pixel</p> by <p>pixel</p>
   </div>
-  <div class="content-pane"></div>
+  <div class="content-pane">
+    next content
+  </div>
 </main>

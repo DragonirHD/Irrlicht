@@ -1,24 +1,46 @@
 @use '../../../customVariables';
 
 .mission-container-pixels {
-  height: 80%;
-  font-size: 40px;
+  font-size: 80px;
   text-align: center;
+  align-content: center;
   text-transform: capitalize;
+  position: relative; //used to position the text above the overlay
+  pointer-events: none; //needed for the overlay to still receive pointer events
+
+  height: calc(100dvh - #{customVariables.$desktop-toolbar-height});
+
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    height: calc(100dvh - #{customVariables.$mobile-toolbar-height});
+  }
+
+  animation-name: popIn-less;
+  animation-duration: 0.75s;
+  animation-timing-function: ease-in-out;
 }
 
 .mission-container-pixels p {
-  font-size: 80px;
+  font-size: 120px;
+  margin: 0;
+  pointer-events: none;
+  animation-name: popIn;
+  animation-duration: 0.75s;
+  animation-timing-function: ease-in-out;
 }
 
 .pixels-overlay-container {
   position: absolute;
   left: 0;
-  height: 80%;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+
+  height: calc(100dvh - #{customVariables.$desktop-toolbar-height});
+
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    height: calc(100dvh - #{customVariables.$mobile-toolbar-height});
+  }
 }
 
 .pixel {
@@ -31,15 +53,22 @@
   transition: opacity 0.2s ease;
 }
 
-.pixel-0 {
+//extra duplicate class of normal :hover to enable/disable through typescript
+//(pseudo-classes shouldn't be triggered directly in typescript)
+.pixel--hover {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.pixel-type-0 {
   background-color: var(--mat-sys-primary);
 }
 
-.pixel-1 {
+.pixel-type-1 {
   background-color: var(--mat-sys-secondary);
 }
 
-.pixel-2 {
+.pixel-type-2 {
   background-color: var(--mat-sys-tertiary);
 }
 
