@@ -76,3 +76,28 @@
   animation-name: popIn;
   animation-duration: 0.75s;
 }
+
+@keyframes fadeIn-up {
+  0% {
+    opacity: 0;
+    transform: translateY(80%);
+  }
+  20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.animation__fadeIn-up {
+  animation-name: fadeIn-up;
+  animation-duration: 0.75s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}

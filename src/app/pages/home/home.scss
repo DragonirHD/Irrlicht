@@ -1,7 +1,10 @@
 @use '../../../customVariables';
 
-.mission-container-pixels {
-  font-size: 80px;
+.pixels-text-container {
+  font-family: "Jersey 15", sans-serif;
+  text-shadow: -3px -3px 0 var(--mat-sys-background), 3px -3px 0 var(--mat-sys-background),
+  -3px 3px 0 var(--mat-sys-background), 3px 3px 0 var(--mat-sys-background);
+  font-size: 100px;
   text-align: center;
   align-content: center;
   text-transform: capitalize;
@@ -19,8 +22,8 @@
   animation-timing-function: ease-in-out;
 }
 
-.mission-container-pixels p {
-  font-size: 120px;
+.pixels-text-container p {
+  font-size: 140px;
   margin: 0;
   pointer-events: none;
   animation-name: popIn;
@@ -28,50 +31,15 @@
   animation-timing-function: ease-in-out;
 }
 
-.pixels-overlay-container {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-
-  height: calc(100dvh - #{customVariables.$desktop-toolbar-height});
-
-  @media only screen and (max-width: customVariables.$mobile-max-width) {
-    height: calc(100dvh - #{customVariables.$mobile-toolbar-height});
-  }
-}
-
-.pixel {
-  opacity: 0;
-  transition: opacity 2s ease 0.5s;
-}
-
-.pixel:hover {
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-//extra duplicate class of normal :hover to enable/disable through typescript
-//(pseudo-classes shouldn't be triggered directly in typescript)
-.pixel--hover {
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-.pixel-type-0 {
-  background-color: var(--mat-sys-primary);
-}
-
-.pixel-type-1 {
-  background-color: var(--mat-sys-secondary);
-}
-
-.pixel-type-2 {
-  background-color: var(--mat-sys-tertiary);
-}
-
 .content-pane {
-  height: 50vh;
+  margin-block: 30dvh;
+  height: 30dvh;
+  background-color: var(--mat-sys-primary);
+  text-align: center;
+  align-content: center;
+
+  &__text {
+    opacity: 0;
+    font-size: 50px;
+  }
 }

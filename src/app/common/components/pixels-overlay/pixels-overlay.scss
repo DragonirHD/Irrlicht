@@ -1,0 +1,46 @@
+@use '../../../../customVariables';
+
+.pixels-overlay__container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  height: calc(100dvh - #{customVariables.$desktop-toolbar-height});
+
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    height: calc(100dvh - #{customVariables.$mobile-toolbar-height});
+  }
+
+  &__pixel {
+    opacity: 0;
+    transition: opacity 2s ease 0.5s;
+
+    &--type-0 {
+      background-color: var(--mat-sys-primary);
+    }
+
+    &--type-1 {
+      background-color: var(--mat-sys-secondary);
+    }
+
+    &--type-2 {
+      background-color: var(--mat-sys-tertiary);
+    }
+
+    //extra duplicate class of normal :hover to enable/disable through typescript
+    //(pseudo-classes shouldn't be triggered directly in typescript)
+    &--hover {
+      opacity: 0.8;
+      transition: opacity 0.2s ease;
+    }
+  }
+
+  &__pixel:hover {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+}

@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {NgStyle} from '@angular/common';
 
 @Component({
-  selector: 'app-cursor-light-overlay',
+  selector: 'cursor-light-overlay',
   imports: [
     NgStyle
   ],

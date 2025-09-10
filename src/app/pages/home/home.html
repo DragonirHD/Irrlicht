@@ -1,23 +1,38 @@
 <main>
-  <div
-    #pixelsOverlayContainer
-    class="pixels-overlay-container"
-  >
-    @if (pixels().length > 0) {
-      @for (pixel of pixels(); track pixel.id) {
-        <div
-          id="pixel-number-{{pixel.id}}"
-          class="pixel pixel-type-{{pixel.color}}"
-          [ngStyle]="{'width': pixelsSize + 'px', 'height': pixelsSize + 'px'}"
-        >
-        </div>
-      }
-    }
-  </div>
-  <div class="mission-container-pixels p-container">
+  <pixels-overlay/>
+  <div class="pixels-text-container p-container">
     creating stories <p>pixel</p> by <p>pixel</p>
   </div>
-  <div class="content-pane">
-    next content
+  <div #contentPane class="content-pane">
+    <p #contentPaneText
+       class="content-pane__text"
+       observeVisibility
+       [debounceTime]="0"
+       (visible)="contentPaneVisible($event)"
+    >
+      Featured Project
+    </p>
+  </div>
+
+  <div #contentPane class="content-pane">
+    <p #contentPaneText
+       class="content-pane__text"
+       observeVisibility
+       [debounceTime]="0"
+       (visible)="contentPaneVisible($event)"
+    >
+      Read more about our great team
+    </p>
+  </div>
+
+  <div #contentPane class="content-pane">
+    <p #contentPaneText
+       class="content-pane__text"
+       observeVisibility
+       [debounceTime]="0"
+       (visible)="contentPaneVisible($event)"
+    >
+      For requests of questions, get in touch with us here
+    </p>
   </div>
 </main>

@@ -2,9 +2,12 @@
 
 .theme-slide-toggle {
   @include mat.slide-toggle-overrides((
-    //track-outline-color: var(--mat-sys-primary),
-    //handle-shape: 8px,
-    //track-shape: 8px,
+    //optional second design to make it more square
+    /*
+    track-outline-color: var(--mat-sys-primary),
+    handle-shape: 8px,
+    track-shape: 8px,
+    */
   ))
 }
 
