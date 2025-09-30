@@ -19,12 +19,12 @@ mat-card {
 }
 
 mat-card-header {
-  font: var(--mat-sys-display-small);
+  font: var(--typography-header-font-medium-accent);
 }
 
 mat-card-content {
   padding-left: 45px;
-  font: var(--mat-sys-body-large);
+  font: var(--typography-body-font);
 
   //needed for icon positioning
   display: flex;
@@ -36,7 +36,7 @@ mat-icon {
   height: 70px;
   margin-left: auto;
   position: relative;
-  top: -40px;
+  top: -48px;
   font-size: 70px;
 
   //opacity animation setup
