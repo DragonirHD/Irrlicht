@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Project} from '../common/classes/Project';
 import {HttpClient} from '@angular/common/http';
+import {lastValueFrom} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -20,20 +21,23 @@ export class ProjectService {
   }
 
   /**
-   * returns a sorted list of all projectInfo.json files as type "Project"
+   * Returns a sorted list of the projectInfo.json files defined in the `projectNames` parameter as type "Project"
+   *
+   * If `projectNames` is undefined, a sorted list of all projectInfo.json files as type "Project" is returned.
    *
    * @remarks
    * If a project seems to be missing, make sure that the `projectFolderNames` array inside `project-service.ts` is up to date
+   *
+   * @param projectNames a string array of the projectNames that should be returned. Can be left empty to receive the full list of the projects.
    */
-  public async getProjects(): Promise<Project[]> {
+  public async getProjects(projectNames?: string[]): Promise<Project[]> {
     const projects: Project[] = [];
-    for (const folderName of this.projectFolderNames) {
+    const requestedProjectNames: string[] = projectNames ? projectNames : this.projectFolderNames;
+    for (const folderName of requestedProjectNames) {
       const infoFilePath = `${this.projectFileFolderPath}${folderName}/projectInfo.json`;
-      this.http.get<Project>(infoFilePath).subscribe((project) => {
-        project = this.populateImageUrls(project, folderName);
-        projects.push(project);
-        }
-      );
+      let project = await this.getProjectFromFilePath(infoFilePath);
+      project = this.populateImageUrls(project, folderName);
+      projects.push(project);
     }
 
     //sort the projects by their index
@@ -42,6 +46,10 @@ export class ProjectService {
     });
 
     return projects;
+  }
+
+  private async getProjectFromFilePath(infoFilePath: string) {
+    return lastValueFrom(this.http.get<Project>(infoFilePath));
   }
 
   /**

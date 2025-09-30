@@ -1,13 +1,12 @@
 @use '../../../customVariables';
 
 .pixels-text-container {
-  font-family: "Jersey 15", sans-serif;
+  font: var(--typography-title-font-medium);
   text-shadow: -3px -3px 0 var(--mat-sys-background), 3px -3px 0 var(--mat-sys-background),
   -3px 3px 0 var(--mat-sys-background), 3px 3px 0 var(--mat-sys-background);
-  font-size: 100px;
   text-align: center;
   align-content: center;
-  text-transform: capitalize;
+  text-transform: uppercase;
   position: relative; //used to position the text above the overlay
   pointer-events: none; //needed for the overlay to still receive pointer events
 
@@ -20,26 +19,72 @@
   animation-name: popIn-less;
   animation-duration: 0.75s;
   animation-timing-function: ease-in-out;
-}
 
-.pixels-text-container p {
-  font-size: 140px;
-  margin: 0;
-  pointer-events: none;
-  animation-name: popIn;
-  animation-duration: 0.75s;
-  animation-timing-function: ease-in-out;
+  p {
+    font: var(--typography-title-font-large);
+    margin: 0;
+    pointer-events: none;
+    animation-name: popIn;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-in-out;
+  }
 }
 
 .content-pane {
   margin-block: 30dvh;
-  height: 30dvh;
+  min-height: 30dvh;
   background-color: var(--mat-sys-primary);
   text-align: center;
   align-content: center;
 
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    padding-inline: 5dvw;
+  }
+  @media only screen and (min-width: customVariables.$desktop-min-width) and (max-width: customVariables.$desktop-max-width) {
+    padding-inline: 10dvw;
+  }
+  @media only screen and (min-width: customVariables.$widescreen-min-width) {
+    padding-inline: 20dvw;
+  }
+
+  &--split {
+    text-align: start;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__block {
+    width: 50%;
+
+    &--right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__header {
+    opacity: 0;
+    font: var(--typography-header-font-large);
+  }
+
   &__text {
     opacity: 0;
-    font-size: 50px;
+    font: var(--typography-body-font);
+  }
+}
+
+.morphing-cube {
+  height: 20dvw;
+  aspect-ratio: 1;
+  max-height: 200px;
+  position: relative;
+  top: 10%;
+
+  &__cube {
+    height: 20dvw;
+    aspect-ratio: 1;
+    max-height: 200px;
+    background-color: var(--mat-sys-background);
   }
 }

@@ -1,11 +1,14 @@
 <main>
   <pixels-overlay/>
   <div class="pixels-text-container p-container">
-    creating stories <p>pixel</p> by <p>pixel</p>
+    creating stories
+    <p>{{ activeTitleWord | async }}</p>
+    by
+    <p>{{ activeTitleWord | async }}</p>
   </div>
   <div #contentPane class="content-pane">
     <p #contentPaneText
-       class="content-pane__text"
+       class="content-pane__header"
        observeVisibility
        [debounceTime]="0"
        (visible)="contentPaneVisible($event)"
@@ -14,9 +17,47 @@
     </p>
   </div>
 
+  @if (featuredProject) {
+    <div class="p-container">
+      <card-selector
+        [title]="featuredProject.title"
+        [subtitle]="featuredProject.oneLine"
+        [imageUrl]="featuredProject.coverImageUrl"
+      />
+    </div>
+  }
+
+
+  <div #contentPane class="content-pane content-pane--split">
+    <div class="content-pane__block content-pane__block--left">
+      <p #contentPaneText
+         class="content-pane__header"
+         observeVisibility
+         [debounceTime]="0"
+         (visible)="contentPaneVisible($event)"
+      >
+        It's not just <span style="font: var(--typography-header-font-large-accent)">Pixels</span>
+      </p>
+      <h1 #contentPaneText
+          class="content-pane__text"
+          observeVisibility
+          [debounceTime]="0"
+          (visible)="contentPaneVisible($event)"
+      >
+        We do not intend to limit ourselves to one singular style.
+        Our art direction changes case by case according to what we think would support the underlying gameplay best.
+      </h1>
+    </div>
+    <div class="content-pane__block content-pane__block--right">
+      <div class="morphing-cube animation__jump">
+        <div class="morphing-cube__cube animation__morph-rotating"></div>
+      </div>
+    </div>
+  </div>
+
   <div #contentPane class="content-pane">
     <p #contentPaneText
-       class="content-pane__text"
+       class="content-pane__header"
        observeVisibility
        [debounceTime]="0"
        (visible)="contentPaneVisible($event)"
@@ -27,12 +68,32 @@
 
   <div #contentPane class="content-pane">
     <p #contentPaneText
+       class="content-pane__header"
+       observeVisibility
+       [debounceTime]="0"
+       (visible)="contentPaneVisible($event)"
+    >
+      For requests or questions, get in touch with us here
+    </p>
+  </div>
+
+  <div #contentPane class="content-pane">
+    <p #contentPaneText
+       class="content-pane__header"
+       observeVisibility
+       [debounceTime]="0"
+       (visible)="contentPaneVisible($event)"
+    >
+      Support
+    </p>
+    <p #contentPaneText
        class="content-pane__text"
        observeVisibility
        [debounceTime]="0"
        (visible)="contentPaneVisible($event)"
     >
-      For requests of questions, get in touch with us here
+      There is currently no direct way to support us. But you just reading this already means much to us.
+      If you like our projects, you can let us know over on our social media channels.
     </p>
   </div>
 </main>

@@ -101,3 +101,66 @@
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
+
+@keyframes morph-rotating {
+  0% {
+    rotate: 0deg;
+    border-radius: 0;
+  }
+  50% {
+    border-radius: 50%;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+
+.animation__morph-rotating {
+  animation-name: morph-rotating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0%);
+  }
+  10% {
+    transform: translateY(-20%);
+  }
+  20% {
+    transform: translateY(-30%);
+  }
+  30% {
+    transform: translateY(-36%);
+  }
+  40% {
+    transform: translateY(-39%);
+  }
+  50% {
+    transform: translateY(-40%);
+  }
+  60% {
+    transform: translateY(-39%);
+  }
+  70% {
+    transform: translateY(-36%);
+  }
+  80% {
+    transform: translateY(-30%);
+  }
+  90% {
+    transform: translateY(-20%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.animation__jump {
+  animation-name: jump;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}

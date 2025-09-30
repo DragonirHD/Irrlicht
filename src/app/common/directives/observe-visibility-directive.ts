@@ -6,7 +6,7 @@ import {AfterViewInit, Directive, ElementRef, EventEmitter, Input, OnDestroy, On
  *
  * @Remarks
  * This directive originally comes from a blogpost from Giancarlo Buomprisco
- * and has been expanded upon.
+ * and has since been expanded upon.
  *
  *
  * The original blogpost and code can be found here:
@@ -32,13 +32,13 @@ export class ObserveVisibilityDirective
    * Indicates at what percentage the callback should be executed,
    * meaning at what percentage of visibility of the element.
    *
-   * Default is right away (1%) so when the first parts (most of the time the top) of the element come into view.
-   * 100 would be if the element is fully visible.
+   * Default is set to 20% so when the first 20% of the element come into view.
+   * 100% would be if the element is fully visible.
    *
    * @Remarks
-   * Number is in percentage.
+   * Number is in percentage and must be between [0-1].
    */
-  @Input() threshold = 1;
+  @Input() threshold = 0.2;
 
   /**
    * Will emit when the element is deemed visible.
@@ -76,7 +76,7 @@ export class ObserveVisibilityDirective
   private isVisible(element: HTMLElement) {
     return new Promise(resolve => {
       const observer = new IntersectionObserver(([entry]) => {
-        resolve(entry.intersectionRatio === 1);
+        resolve(entry.intersectionRatio >= this.threshold);
         observer.disconnect();
       });
 
@@ -91,7 +91,7 @@ export class ObserveVisibilityDirective
     };
 
     const isIntersecting = (entry: IntersectionObserverEntry) =>
-      entry.isIntersecting || entry.intersectionRatio > 0;
+      entry.isIntersecting || entry.intersectionRatio >= this.threshold;
 
     this.observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {

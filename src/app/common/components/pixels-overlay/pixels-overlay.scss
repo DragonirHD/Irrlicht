@@ -5,15 +5,10 @@
   left: 0;
   top: 0;
   width: 100%;
+  height: 100dvh;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-
-  height: calc(100dvh - #{customVariables.$desktop-toolbar-height});
-
-  @media only screen and (max-width: customVariables.$mobile-max-width) {
-    height: calc(100dvh - #{customVariables.$mobile-toolbar-height});
-  }
 
   &__pixel {
     opacity: 0;
