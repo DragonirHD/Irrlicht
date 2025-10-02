@@ -1,5 +1,5 @@
 import {Component, OnInit, signal, ViewChild, WritableSignal} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {MatTab, MatTabGroup, MatTabLabel} from '@angular/material/tabs';
 import {ProjectSummaryBase} from './project-summary-base/project-summary-base';
 import {ProjectService} from '../../services/project-service';
@@ -14,6 +14,7 @@ import {CardSelector} from '../../common/components/card-selector/card-selector'
     MatTabLabel,
     ProjectSummaryBase,
     CardSelector,
+    RouterLink,
   ],
   templateUrl: './projects.html',
   styleUrl: './projects.scss'

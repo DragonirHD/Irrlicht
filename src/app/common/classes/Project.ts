@@ -9,9 +9,12 @@ export class Project {
   public workedHours: number = 0;
   public usedTechnologies: string[] = [];
   public coverImageName: string = ""; //name with filetype of the cover image
-  public coverImageUrl: string = ""; //automatically generated in project-service.ts
   public summaryImagesNames: string[] = []; //names with filetypes of the images that can be used in the summary
-  public summaryImagesUrls: string[] = []; //automatically generated in project-service.ts
   public mainImagesNames: string[] = []; //names with filetypes of the main images
-  public mainImagesUrls: string[] = []; //automatically generated in project-service.ts
+
+  //properties automatically populated in project-service.ts (don't have to be added in Json file)
+  public folderName: string = "";
+  public coverImageUrl: string = "";
+  public summaryImagesUrls: string[] = [];
+  public mainImagesUrls: string[] = [];
 }

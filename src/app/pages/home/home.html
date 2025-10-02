@@ -23,10 +23,10 @@
         [title]="featuredProject.title"
         [subtitle]="featuredProject.oneLine"
         [imageUrl]="featuredProject.coverImageUrl"
+        [routerLink]="`/projects/${featuredProject.folderName}`"
       />
     </div>
   }
-
 
   <div #contentPane class="content-pane content-pane--split">
     <div class="content-pane__block content-pane__block--left">

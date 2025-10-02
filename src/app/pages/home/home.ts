@@ -7,6 +7,7 @@ import {CardSelector} from '../../common/components/card-selector/card-selector'
 import {ProjectService} from '../../services/project-service';
 import {Project} from '../../common/classes/Project';
 import {TypewriterService} from '../../services/typewriter.service';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'home',
@@ -15,7 +16,8 @@ import {TypewriterService} from '../../services/typewriter.service';
     ObserveVisibilityDirective,
     PixelsOverlay,
     AsyncPipe,
-    CardSelector
+    CardSelector,
+    RouterLink
   ],
   styleUrl: './home.scss'
 })

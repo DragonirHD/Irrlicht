@@ -37,6 +37,10 @@ export class ProjectService {
       const infoFilePath = `${this.projectFileFolderPath}${folderName}/projectInfo.json`;
       let project = await this.getProjectFromFilePath(infoFilePath);
       project = this.populateImageUrls(project, folderName);
+
+      //populate fields that aren't defined in the json file
+      project.folderName = folderName;
+
       projects.push(project);
     }
 
