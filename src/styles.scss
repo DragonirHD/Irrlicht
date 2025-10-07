@@ -2,7 +2,8 @@
 @use 'customVariables';
 @use 'app/common/animations';
 
-@import 'customStyles/p-container';
+@import 'customStyles/c-whitespace-container';
+@import 'customStyles/c-content-pane';
 
 //custom global variable declaration
 :root {

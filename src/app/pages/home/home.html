@@ -1,6 +1,6 @@
 <main>
   <pixels-overlay/>
-  <div class="pixels-text-container p-container">
+  <div class="pixels-text-container c-whitespace-container--slim">
     creating stories
     <p>{{ activeTitleWord | async }}</p>
     by
@@ -18,7 +18,7 @@
   </div>
 
   @if (featuredProject) {
-    <div class="p-container">
+    <div class="c-whitespace-container--slim">
       <card-selector
         [title]="featuredProject.title"
         [subtitle]="featuredProject.oneLine"

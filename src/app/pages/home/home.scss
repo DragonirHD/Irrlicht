@@ -30,50 +30,6 @@
   }
 }
 
-.content-pane {
-  margin-block: 30dvh;
-  min-height: 30dvh;
-  background-color: var(--mat-sys-primary);
-  text-align: center;
-  align-content: center;
-
-  @media only screen and (max-width: customVariables.$mobile-max-width) {
-    padding-inline: 5dvw;
-  }
-  @media only screen and (min-width: customVariables.$desktop-min-width) and (max-width: customVariables.$desktop-max-width) {
-    padding-inline: 10dvw;
-  }
-  @media only screen and (min-width: customVariables.$widescreen-min-width) {
-    padding-inline: 20dvw;
-  }
-
-  &--split {
-    text-align: start;
-    display: flex;
-    flex-direction: row;
-  }
-
-  &__block {
-    width: 50%;
-
-    &--right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-
-  &__header {
-    opacity: 0;
-    font: var(--typography-header-font-large);
-  }
-
-  &__text {
-    opacity: 0;
-    font: var(--typography-body-font);
-  }
-}
-
 .morphing-cube {
   height: 20dvw;
   aspect-ratio: 1;

@@ -1,0 +1,44 @@
+@use '../customVariables';
+
+.c-whitespace-container {
+  margin-block: 30px;
+
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    margin-inline: 3dvw;
+  }
+  @media only screen and (min-width: customVariables.$desktop-min-width) and (max-width: customVariables.$desktop-max-width) {
+    margin-inline: 12dvw;
+  }
+  @media only screen and (min-width: customVariables.$widescreen-min-width) {
+    margin-inline: 18dvw;
+  }
+}
+
+.c-whitespace-container--slim {
+  margin-block: 30px;
+
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    margin-inline: 5dvw;
+  }
+  @media only screen and (min-width: customVariables.$desktop-min-width) and (max-width: customVariables.$desktop-max-width) {
+    margin-inline: 20dvw;
+  }
+  @media only screen and (min-width: customVariables.$widescreen-min-width) {
+    margin-inline: 30dvw;
+  }
+}
+
+
+.c-whitespace-container--wide {
+  margin-block: 30px;
+
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    margin-inline: 2dvw;
+  }
+  @media only screen and (min-width: customVariables.$desktop-min-width) and (max-width: customVariables.$desktop-max-width) {
+    margin-inline: 5dvw;
+  }
+  @media only screen and (min-width: customVariables.$widescreen-min-width) {
+    margin-inline: 10dvw;
+  }
+}

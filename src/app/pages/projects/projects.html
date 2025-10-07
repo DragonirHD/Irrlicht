@@ -1,31 +1,40 @@
-<main class="p-container">
-  <mat-tab-group
-    #summaryTabGroup
-    [(selectedIndex)]="summaryTabGroupSelectedIndex"
-    fitInkBarToContent
-    mat-stretch-tabs="false"
-    mat-align-tabs="center"
-    headerPosition="below"
-    (touchstart)="lastTouchStart.set($event.touches[0])"
-    (touchmove)="lastTouchMove.set($event.touches[0])"
-    (touchend)="summarySwipeEnd()"
-    (touchcancel)="summarySwipeCancel()"
-  >
+<main>
+  <div class="c-whitespace-container--wide">
+    <mat-tab-group
+      #summaryTabGroup
+      [(selectedIndex)]="summaryTabGroupSelectedIndex"
+      fitInkBarToContent
+      mat-stretch-tabs="false"
+      mat-align-tabs="center"
+      headerPosition="below"
+      (touchstart)="lastTouchStart.set($event.touches[0])"
+      (touchmove)="lastTouchMove.set($event.touches[0])"
+      (touchend)="summarySwipeEnd()"
+      (touchcancel)="summarySwipeCancel()"
+    >
+      @for (project of projects; track project) {
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span class="tab-selector"></span>
+          </ng-template>
+          <project-summary-base [project]="project"/>
+        </mat-tab>
+      }
+    </mat-tab-group>
+  </div>
+
+  <div class="subtitle">
+    Find out more about a specific Project
+  </div>
+
+  <div class="c-whitespace-container--slim">
     @for (project of projects; track project) {
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <span class="tab-selector"></span>
-        </ng-template>
-        <project-summary-base [project]="project"/>
-      </mat-tab>
+      <card-selector
+        [title]="project.title"
+        [subtitle]="project.oneLine"
+        [imageUrl]="project.coverImageUrl"
+        [routerLink]="`/projects/${project.folderName}`"
+      />
     }
-  </mat-tab-group>
-  @for (project of projects; track project) {
-    <card-selector
-      [title]="project.title"
-      [subtitle]="project.oneLine"
-      [imageUrl]="project.coverImageUrl"
-      [routerLink]="`/projects/${project.folderName}`"
-    />
-  }
+  </div>
 </main>
