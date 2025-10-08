@@ -46,7 +46,7 @@ export class Projects implements OnInit {
   protected summarySwipeEnd() {
     //We need to use the value of "touchmove" here instead of "touchend" because "touchend.touches" will only have items if we use multiple pointers.
 
-    //if we have a no value for the start or end position of our swipe, we can't calculate where we swiped.
+    //if we have no value for the start or end position of our swipe, we can't calculate where we swiped.
     if (!this.lastTouchStart() || !this.lastTouchMove()) {
       return;
     }

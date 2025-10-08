@@ -2,8 +2,8 @@
 @use 'customVariables';
 @use 'app/common/animations';
 
-@import 'customStyles/c-whitespace-container';
-@import 'customStyles/c-content-pane';
+@use 'customStyles/c-whitespace-container';
+@use 'customStyles/c-content-pane';
 
 //custom global variable declaration
 :root {
@@ -31,17 +31,6 @@
   --typography-body-size: 1.5rem;
   --typography-body-style: Roboto;
 
-  @media only screen and (max-width: customVariables.$mobile-max-width) {
-    --typography-title-size-large: 6.875rem;
-    --typography-title-size-medium: 5rem;
-
-    --typography-header-size-large: 2.5rem;
-    --typography-header-size-medium: 2.125rem;
-
-    --typography-body-size: 1rem;
-  }
-
-
   //typography fonts
   --typography-title-font-large: var(--typography-title-weight) var(--typography-title-size-large) / var(--typography-title-line-height) var(--typography-title-style);
   --typography-title-font-medium: var(--typography-title-weight) var(--typography-title-size-medium) var(--typography-title-style);
@@ -55,6 +44,16 @@
 
 
   --typography-body-font: var(--typography-body-weight) var(--typography-body-size) var(--typography-body-style);
+
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    --typography-title-size-large: 6.875rem;
+    --typography-title-size-medium: 5rem;
+
+    --typography-header-size-large: 2.5rem;
+    --typography-header-size-medium: 2.125rem;
+
+    --typography-body-size: 1rem;
+  }
 }
 
 html {
