@@ -1,0 +1,15 @@
+@use '@angular/material' as mat;
+@use '../materialPalettes/sunrise_colors_theme-colors' as sunrise-theme-palette;
+
+//CURRENTLY NOT IN USE!!!!!!!!!
+$light-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: sunrise-theme-palette.$primary-palette,
+    tertiary: sunrise-theme-palette.$tertiary-palette
+  ),
+  typography: (
+    plain-family: Roboto,
+    brand-family: "Jersey 15",
+  )
+));

@@ -20,15 +20,25 @@ mat-card {
 
 mat-card-header {
   font: var(--typography-header-font-medium-accent);
+  text-transform: uppercase;
+  text-shadow: -2px -2px 1px var(--mat-sys-background), 2px -2px 1px var(--mat-sys-background),
+  -2px 2px 1px var(--mat-sys-background), 2px 2px 1px var(--mat-sys-background);
 }
 
 mat-card-content {
   padding-left: 45px;
-  font: var(--typography-body-font);
 
   //needed for icon positioning
   display: flex;
   flex-direction: row;
+
+  .text {
+    font: var(--typography-body-font);
+    /*-webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: var(--mat-sys-background);*/
+    text-shadow: -1px -1px 0 var(--mat-sys-background), 1px -1px 0 var(--mat-sys-background),
+    -1px 1px 0 var(--mat-sys-background), 1px 1px 0 var(--mat-sys-background);
+  }
 }
 
 mat-icon {

@@ -2,58 +2,50 @@
 @use 'customVariables';
 @use 'app/common/animations';
 
+@use 'customStyles/customTypography';
+@use 'customStyles/customThemes' as customThemes;
 @use 'customStyles/c-whitespace-container';
 @use 'customStyles/c-content-pane';
 
-//custom global variable declaration
 :root {
+  //custom global variable declaration
+
   //the following variables are set and updated in sidenav-mode-toggle.ts
   --sidenav-open: false; //true if the sidenav is open
   --sidenav-mode: ""; //string of the current MatDrawerMode that the sidenav is in
   --sidenav-width: #{customVariables.$sidenav-width};
   --sidenav-open-width: 0px; //set to the same value as --sidenav-width but only when sidenav is open
 
-  //typography definitions
-  --typography-title-weight: 400;
-  --typography-title-size-large: 8rem;
-  --typography-title-size-medium: 6rem;
-  --typography-title-size-small: 4rem;
-  --typography-title-line-height: 8rem;
-  --typography-title-style: "Jersey 15";
+  @include mat.theme((
+    color: (
+      primary: mat.$violet-palette,
+    ),
+    typography: (
+      plain-family: Roboto,
+      brand-family: "Jersey 15",
+    ),
+    density: 0
+  ));
 
-  --typography-header-weight: 400;
-  --typography-header-size-large: 3.125rem;
-  --typography-header-size-medium: 2.75rem;
-  --typography-header-style: Roboto;
-  --typography-header-style-accent: "Jersey 15";
+  //theme-light
+  color-scheme: light;
+  --app-primary: #ff9900;
+  --app-on-primary: #ff5900;
+  --app-background: #ffffff;
+  --app-text: #ffffff;
 
-  --typography-body-weight: 400;
-  --typography-body-size: 1.5rem;
-  --typography-body-style: Roboto;
+  --mat-sys-primary: var(--app-primary);
+  --mat-sys-on-primary: var(--app-on-primary);
+  --mat-sys-background: var(--app-background);
+  --mat-sys-on-surface: var(--app-text);
+}
 
-  //typography fonts
-  --typography-title-font-large: var(--typography-title-weight) var(--typography-title-size-large) / var(--typography-title-line-height) var(--typography-title-style);
-  --typography-title-font-medium: var(--typography-title-weight) var(--typography-title-size-medium) var(--typography-title-style);
-
-
-  --typography-header-font-large: var(--typography-header-weight) var(--typography-header-size-large) var(--typography-body-style);
-  --typography-header-font-large-accent: var(--typography-header-weight) calc(var(--typography-header-size-large) + 10px) var(--typography-header-style-accent);
-
-  --typography-header-font-medium: var(--typography-header-weight) var(--typography-header-size-medium) var(--typography-body-style);
-  --typography-header-font-medium-accent: var(--typography-header-weight) calc(var(--typography-header-size-medium) + 10px) var(--typography-header-style-accent);
-
-
-  --typography-body-font: var(--typography-body-weight) var(--typography-body-size) var(--typography-body-style);
-
-  @media only screen and (max-width: customVariables.$mobile-max-width) {
-    --typography-title-size-large: 6.875rem;
-    --typography-title-size-medium: 5rem;
-
-    --typography-header-size-large: 2.5rem;
-    --typography-header-size-medium: 2.125rem;
-
-    --typography-body-size: 1rem;
-  }
+:root.theme-dark {
+  color-scheme: dark;
+  --app-primary: #7000B0;
+  --app-on-primary: #ffffff;
+  --app-background: #000000;
+  --app-text: #ffffff;
 }
 
 html {
@@ -65,19 +57,6 @@ body {
   height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", "Jersey 15", sans-serif;
-  @include mat.theme((
-    //color: (
-    //  theme-type: light,
-    //  primary: mat.$azure-palette,
-    //  tertiary: mat.$blue-palette,
-    //),
-    color: mat.$cyan-palette,
-    typography: (
-      plain-family: Roboto,
-      brand-family: "Jersey 15",
-    ),
-    density: 0,
-  ));
 
   //START MAT TOOLBAR OVERRIDES
 
