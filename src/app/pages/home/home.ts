@@ -8,6 +8,7 @@ import {ProjectService} from '../../services/project-service';
 import {Project} from '../../common/classes/Project';
 import {TypewriterService} from '../../services/typewriter.service';
 import {RouterLink} from '@angular/router';
+import {ImageViewerService} from '../../services/image-viewer.service';
 
 @Component({
   selector: 'home',
@@ -17,7 +18,7 @@ import {RouterLink} from '@angular/router';
     PixelsOverlay,
     AsyncPipe,
     CardSelector,
-    RouterLink
+    RouterLink,
   ],
   styleUrl: './home.scss'
 })
@@ -35,7 +36,8 @@ export class Home implements AfterViewInit {
 
   constructor(
     private readonly projectService: ProjectService,
-    private readonly typewriterService: TypewriterService
+    private readonly typewriterService: TypewriterService,
+    protected readonly imageViewerService: ImageViewerService
   ) {
 
   }

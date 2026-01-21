@@ -1,0 +1,7 @@
+<div>
+  @if (loading) {
+    <mat-spinner class="c-spinner-centered"/>
+  } @else {
+    <div #documentationWrapper [innerHTML]="documentation" class="markdownContainer c-whitespace-container--slim"></div>
+  }
+</div>

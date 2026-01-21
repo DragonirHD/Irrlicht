@@ -1,0 +1,28 @@
+{
+  "title": "Invasion of Space",
+  "projectType": 1,
+  "index": 2,
+  "oneLine": "Invades your Phone",
+  "summary": "",
+  "projectStatus": "Completed",
+  "completionDateString": "19.03.2021",
+  "youtubeLink": "https://youtu.be/K0jshLb3eRk",
+  "workedHours": 20,
+  "usedSoftware": [
+    "Unity (Game Engine)",
+    "Android SDK"
+  ],
+  "developedMechanics": [
+    "Simple Enemy logic",
+    "Using tilt controls to move objects in Unity",
+    "Using Save Files to save high scores",
+    "Simple particle effects with the built in particle system"
+  ],
+  "coverImageName": "invasion_of_space_stars.png",
+  "mainImageName": "invasion_of_space_gameplay.png",
+  "summaryImagesNames": [
+    "invasion_of_space_titlescreen.png",
+    "invasion_of_space_gameplay.png",
+    "invasion_of_space_deathscreen.png"
+  ]
+}

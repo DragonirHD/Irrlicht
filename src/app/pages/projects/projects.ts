@@ -1,10 +1,30 @@
-import {Component, OnInit, signal, ViewChild, WritableSignal} from '@angular/core';
-import {ActivatedRoute, RouterLink} from '@angular/router';
+import {
+  ChangeDetectorRef,
+  Component,
+  effect,
+  model,
+  ModelSignal,
+  OnDestroy,
+  OnInit,
+  signal,
+  ViewChild,
+  WritableSignal
+} from '@angular/core';
+import {ActivatedRoute, NavigationEnd, Router, RouterLink} from '@angular/router';
 import {MatTab, MatTabGroup, MatTabLabel} from '@angular/material/tabs';
 import {ProjectSummaryBase} from './project-summary-base/project-summary-base';
 import {ProjectService} from '../../services/project-service';
 import {Project} from '../../common/classes/Project';
 import {CardSelector} from '../../common/components/card-selector/card-selector';
+import {ProjectDocumentation} from './project-documentation/project-documentation';
+import {filter, firstValueFrom, Subscription} from 'rxjs';
+import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {ScrollHelperService} from '../../services/scrollHelper.service';
+import {MatButton, MatFabButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
+import {MatTree, MatTreeNode, MatTreeNodeDef, MatTreeNodePadding, MatTreeNodeToggle} from '@angular/material/tree';
+import {AnimationType} from '../../common/classes/AnimationType';
+import {AnimationHandler} from '../../services/animation-handler';
 
 @Component({
   selector: 'projects',
@@ -15,31 +35,110 @@ import {CardSelector} from '../../common/components/card-selector/card-selector'
     ProjectSummaryBase,
     CardSelector,
     RouterLink,
+    ProjectDocumentation,
+    MatProgressSpinner,
+    MatButton,
+    MatIcon,
+    MatTree,
+    MatTreeNode,
+    MatTreeNodeDef,
+    MatTreeNodePadding,
+    MatTreeNodeToggle,
+    MatFabButton,
   ],
   templateUrl: './projects.html',
   styleUrl: './projects.scss'
 })
-export class Projects implements OnInit {
+export class Projects implements OnInit, OnDestroy {
   @ViewChild('summaryTabGroup') summaryTabGroup: MatTabGroup | undefined;
+  @ViewChild('projectDocumentation') projectDocumentation: ProjectDocumentation | undefined;
+  @ViewChild('documentationNavigationToggleButton') documentationNavigationToggleButton: MatFabButton | undefined;
   protected projects: Project[] = [];
-  protected summaryTabGroupSelectedIndex: number = 0;
+  protected routerSubscription: Subscription | undefined;
+  protected summaryTabGroupSelectedIndex: ModelSignal<number> = model(0);
   protected lastTouchStart: WritableSignal<Touch | undefined> = signal(undefined);
   protected lastTouchMove: WritableSignal<Touch | undefined> = signal(undefined);
+  protected loading: boolean = false;
+  protected minSwipeDistance = 25; //minimum distance in pixels that the user has to swipe from side to side that a swipe is registered
+
+  //documentation-navigation variables
+  protected navigationExpanded = false;
+  protected documentationNavigationDataSource: DocumentationNode[] = [];
+  protected childrenAccessor = (node: DocumentationNode) => node.children ?? [];
+  protected hasChild = (_: number, node: DocumentationNode) => !!node.children && node.children.length > 0;
 
   constructor(
-    private route: ActivatedRoute,
-    private projectService: ProjectService
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly projectService: ProjectService,
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly scrollHelperService: ScrollHelperService,
+    private readonly animationHandler: AnimationHandler,
   ) {
+    effect(async () => {
+      const selectedIndex = this.summaryTabGroupSelectedIndex();
+      await this.projectDocumentation?.updateDocumentation(this.projects[selectedIndex].documentationUrl);
+      this.updateDocumentationNavigation();
+    });
   }
 
   async ngOnInit() {
-    this.route.params.subscribe(params => {
-      //TODO change shown project depending on uri params
-      console.log(params);
-    })
-
+    this.loading = true;
     this.projects = await this.projectService.getProjects();
-    console.log(this.projects);
+
+    //Get initial project from route
+    const routeParams = await firstValueFrom(this.route.params);
+    const routeProjectIndex = this.projects.findIndex((project) => project.folderName == routeParams["projectName"]);
+    if (routeProjectIndex != -1) {
+      this.summaryTabGroupSelectedIndex.set(routeProjectIndex);
+    }
+
+    //Subscribe to route changes to switch projects if the route is adjusted
+    //TODO change this to directly use val instead of awaiting the route params
+    this.routerSubscription = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(async (val) => {
+      const routeParams = await firstValueFrom(this.route.params);
+      const routeProjectIndex = this.projects.findIndex((project) => project.folderName == routeParams["projectName"]);
+      if (routeProjectIndex != -1) {
+        this.summaryTabGroupSelectedIndex.set(routeProjectIndex);
+      }
+    });
+
+    this.loading = false;
+    this.changeDetectorRef.detectChanges();
+    await this.projectDocumentation?.updateDocumentation(this.projects[this.summaryTabGroupSelectedIndex()].documentationUrl);
+    this.changeDetectorRef.detectChanges();
+    this.updateDocumentationNavigation();
+  }
+
+  private updateDocumentationNavigation() {
+    let documentationAnchors = document.getElementsByClassName("anchor-element");
+    let documentationNodes: DocumentationNode[] = [];
+    let lastH1Anchor: DocumentationNode | undefined;
+    let lastH2Anchor: DocumentationNode | undefined;
+
+    for (let anchor of documentationAnchors) {
+      let documentationNode: DocumentationNode = {
+        name: anchor.id.slice(anchor.id.indexOf("_") + 1).replaceAll('_', ' '),
+        route: anchor.id,
+        children: []
+      }
+      let anchorElementType = anchor.id.slice(14, anchor.id.indexOf("-", 14));
+      switch (anchorElementType) {
+        case 'H1':
+          lastH1Anchor = documentationNode;
+          documentationNodes.push(documentationNode);
+          break;
+        case 'H2':
+          lastH2Anchor = documentationNode;
+          lastH1Anchor?.children.push(documentationNode);
+          break;
+        case 'H3':
+          lastH2Anchor?.children.push(documentationNode);
+          break;
+      }
+    }
+
+    this.documentationNavigationDataSource = documentationNodes;
   }
 
   /**Used to add very limited swipe support to our tab group.*/
@@ -52,20 +151,50 @@ export class Projects implements OnInit {
     }
 
     if (this.lastTouchStart()!.clientX > this.lastTouchMove()!.clientX
-      && this.summaryTabGroupSelectedIndex < this.summaryTabGroup!._tabs.length) {
-      this.summaryTabGroupSelectedIndex++;
+      && this.lastTouchStart()!.clientX - this.lastTouchMove()!.clientX > this.minSwipeDistance
+      && this.summaryTabGroupSelectedIndex() < this.summaryTabGroup!._tabs.length - 1) {
+      this.summaryTabGroupSelectedIndex.set(this.summaryTabGroupSelectedIndex() + 1);
     }
 
     if (this.lastTouchStart()!.clientX < this.lastTouchMove()!.clientX
-      && this.summaryTabGroupSelectedIndex > 0) {
-      this.summaryTabGroupSelectedIndex--;
+      && this.lastTouchMove()!.clientX - this.lastTouchStart()!.clientX > this.minSwipeDistance
+      && this.summaryTabGroupSelectedIndex() > 0) {
+      this.summaryTabGroupSelectedIndex.set(this.summaryTabGroupSelectedIndex() - 1);
     }
   }
 
   protected summarySwipeCancel() {
-    //if we run into a situation where the swipe is cancelled,
+    //if we run into a situation where the swipe is canceled,
     //we reset the last saved values to not accidentally swipe if the user didn't decide to do so.
     this.lastTouchStart.set(undefined);
     this.lastTouchMove.set(undefined);
   }
+
+  protected projectButtonClicked() {
+    this.scrollHelperService.scrollToTop();
+  }
+
+  protected documentationNavigationToggle() {
+    if (this.documentationNavigationToggleButton) {
+      this.animationHandler.playOnce({
+        nativeElement: this.documentationNavigationToggleButton._elementRef.nativeElement.getElementsByTagName('mat-icon')[0] as HTMLElement,
+        animationType: AnimationType.RotationFull,
+      });
+    }
+    this.navigationExpanded = !this.navigationExpanded;
+  }
+
+  protected async documentationNavigationNodeClicked(headerId: string) {
+    document.getElementById(headerId)?.scrollIntoView({behavior: 'smooth'});
+  }
+
+  ngOnDestroy() {
+    this.routerSubscription?.unsubscribe();
+  }
+}
+
+interface DocumentationNode {
+  name: string;
+  route: string;
+  children: DocumentationNode[];
 }

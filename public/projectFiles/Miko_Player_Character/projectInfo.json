@@ -1,0 +1,24 @@
+{
+  "title": "Miko Character",
+  "projectType": 4,
+  "index": 3,
+  "oneLine": "Main character of a forgotten game",
+  "summary": "",
+  "projectStatus": "Completed",
+  "completionDateString": "05.01.2024",
+  "workedHours": 10,
+  "usedSoftware": [
+    "Krita"
+  ],
+  "developedMechanics": [
+    "Designing Pixel Art Characters at a higher pixel count",
+    "Creating high fidelity Pixel Art animations"
+  ],
+  "coverImageName": "miko_background.png",
+  "mainImageName": "player_idle_weapon_visualisation_6_background.png",
+  "summaryImagesNames": [
+    "player_scaled_x8.png",
+    "Final.gif",
+    "player_idle_weapon_visualisation_6_background.png"
+  ]
+}

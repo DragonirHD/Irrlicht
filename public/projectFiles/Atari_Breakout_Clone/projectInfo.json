@@ -1,0 +1,29 @@
+{
+  "title": "Atari Breakout Clone",
+  "projectType": 1,
+  "index": 1,
+  "oneLine": "Exactly what the title says",
+  "summary": "A very simple Atari Breakout clone, made in WinForms for a school assignment.\nThe main difficulty during this project was that WinForms isn't exactly a game engine, so many functionalities that would already be present in Unity, Godot or any other engine had to be made from scratch.",
+  "projectStatus": "Completed",
+  "completionDateString": "09.05.2019",
+  "youtubeLink": "https://youtu.be/hPLwvvAl9ZE",
+  "workedHours": 20,
+  "usedSoftware": [
+    "VisualStudio (IDE by Microsoft)",
+    "Windows Forms Library"
+  ],
+  "developedMechanics": [
+    "Complete Gameplay Loop",
+    "Options and Start Menu",
+    "Custom Collision-Handling",
+    "Custom Movement and Physics"
+  ],
+  "documentationName": "documentation_atari_breakout_clone.md",
+  "coverImageName": "blocks.png",
+  "mainImageName": "scene_game.png",
+  "summaryImagesNames": [
+    "scene_start.png",
+    "scene_game.png",
+    "scene_win.png"
+  ]
+}

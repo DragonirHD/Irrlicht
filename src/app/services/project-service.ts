@@ -11,8 +11,12 @@ export class ProjectService {
   //array of all project names / file names in the projectFiles folder.
   //Needs to be updated when adding a new project.
   public readonly projectFolderNames: string[] = [
-    'test',
-    'test2',
+    'Text_Adventure',
+    'Atari_Breakout_Clone',
+    'Invasion_of_Space',
+    'Miko_Player_Character',
+    'Tranquility',
+    'Devil_Jump',
   ];
 
   assetFolderName: string = 'assets';
@@ -35,8 +39,9 @@ export class ProjectService {
     const requestedProjectNames: string[] = projectNames ? projectNames : this.projectFolderNames;
     for (const folderName of requestedProjectNames) {
       const infoFilePath = `${this.projectFileFolderPath}${folderName}/projectInfo.json`;
-      let project = await this.getProjectFromFilePath(infoFilePath);
+      let project = new Project(await this.getProjectFromFilePath(infoFilePath));
       project = this.populateImageUrls(project, folderName);
+      project = this.populateDocumentationUrl(project, folderName);
 
       //populate fields that aren't defined in the json file
       project.folderName = folderName;
@@ -71,20 +76,27 @@ export class ProjectService {
       project.coverImageUrl = `${this.projectFileFolderPath}${folderName}/${this.assetFolderName}/${project.coverImageName}`;
     }
 
+    //populate main image
+    if (project.mainImageName) {
+      project.mainImageUrl = `${this.projectFileFolderPath}${folderName}/${this.assetFolderName}/${project.mainImageName}`;
+    }
+
     //populate summary images
     if (project.summaryImagesNames) {
+      project.summaryImagesUrls = [];
       project.summaryImagesNames.forEach((imageName) => {
         project.summaryImagesUrls.push(`${this.projectFileFolderPath}${folderName}/${this.assetFolderName}/${imageName}`);
       });
     }
 
-    //populate main images
-    if (project.mainImagesNames) {
-      project.mainImagesNames.forEach((imageName) => {
-        project.mainImagesUrls.push(`${this.projectFileFolderPath}${folderName}/${this.assetFolderName}/${imageName}`);
-      });
-    }
+    return project;
+  }
 
+  private populateDocumentationUrl(unpopulatedProject: Project, folderName: string): Project {
+    const project = structuredClone(unpopulatedProject);
+    if (project.documentationName) {
+      project.documentationUrl = (`${this.projectFileFolderPath}${folderName}/${this.assetFolderName}/${project.documentationName}`);
+    }
     return project;
   }
 }

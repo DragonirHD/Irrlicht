@@ -6,6 +6,8 @@
 @use 'customStyles/customThemes' as customThemes;
 @use 'customStyles/c-whitespace-container';
 @use 'customStyles/c-content-pane';
+@use 'customStyles/c-spinner';
+@use 'customStyles/markdown-styles';
 
 :root {
   //custom global variable declaration
@@ -32,7 +34,7 @@
   --app-primary: #ff9900;
   --app-on-primary: #ff5900;
   --app-background: #ffffff;
-  --app-text: #ffffff;
+  --app-text: #000000;
 
   --mat-sys-primary: var(--app-primary);
   --mat-sys-on-primary: var(--app-on-primary);
