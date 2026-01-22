@@ -10,17 +10,14 @@
         mat-stretch-tabs="false"
         mat-align-tabs="center"
         headerPosition="below"
-        (touchstart)="lastTouchStart.set($event.touches[0])"
-        (touchmove)="lastTouchMove.set($event.touches[0])"
-        (touchend)="summarySwipeEnd()"
-        (touchcancel)="summarySwipeCancel()"
       >
         @for (project of projects; track project) {
           <mat-tab>
             <ng-template mat-tab-label>
               <span class="tab-selector"></span>
             </ng-template>
-            <project-summary-base [project]="project"/>
+            <project-summary-base [project]="project" swipe (next)="onSummarySwipe(true)"
+                                  (previous)="onSummarySwipe(false)"/>
           </mat-tab>
         }
       </mat-tab-group>

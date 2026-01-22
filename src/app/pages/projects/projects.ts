@@ -1,15 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  effect,
-  model,
-  ModelSignal,
-  OnDestroy,
-  OnInit,
-  signal,
-  ViewChild,
-  WritableSignal
-} from '@angular/core';
+import {ChangeDetectorRef, Component, effect, model, ModelSignal, OnDestroy, OnInit, ViewChild,} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router, RouterLink} from '@angular/router';
 import {MatTab, MatTabGroup, MatTabLabel} from '@angular/material/tabs';
 import {ProjectSummaryBase} from './project-summary-base/project-summary-base';
@@ -21,6 +10,7 @@ import {filter, firstValueFrom, Subscription} from 'rxjs';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
 import {ScrollHelperService} from '../../services/scrollHelper.service';
 import {ProjectDocumentationNavigation} from './project-documentation-navigation/project-documentation-navigation';
+import {SwipeDirective} from '../../common/directives/swipe.directive';
 
 @Component({
   selector: 'projects',
@@ -34,6 +24,7 @@ import {ProjectDocumentationNavigation} from './project-documentation-navigation
     ProjectDocumentation,
     MatProgressSpinner,
     ProjectDocumentationNavigation,
+    SwipeDirective,
   ],
   templateUrl: './projects.html',
   styleUrl: './projects.scss'
@@ -45,10 +36,7 @@ export class Projects implements OnInit, OnDestroy {
   protected projects: Project[] = [];
   protected routerSubscription: Subscription | undefined;
   protected summaryTabGroupSelectedIndex: ModelSignal<number> = model(0);
-  protected lastTouchStart: WritableSignal<Touch | undefined> = signal(undefined);
-  protected lastTouchMove: WritableSignal<Touch | undefined> = signal(undefined);
   protected loading: boolean = false;
-  protected minSwipeDistance = 25; //minimum distance in pixels that the user has to swipe from side to side that a swipe is registered
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -92,33 +80,15 @@ export class Projects implements OnInit, OnDestroy {
     this.projectDocumentationNavigation?.updateDocumentationNavigation();
   }
 
-  /**Used to add very limited swipe support to our tab group.*/
-  protected summarySwipeEnd() {
-    //We need to use the value of "touchmove" here instead of "touchend" because "touchend.touches" will only have items if we use multiple pointers.
-
-    //if we have no value for the start or end position of our swipe, we can't calculate where we swiped.
-    if (!this.lastTouchStart() || !this.lastTouchMove()) {
+  protected onSummarySwipe(next: boolean) {
+    if (next && this.summaryTabGroupSelectedIndex() < this.summaryTabGroup!._tabs.length - 1) {
+      this.summaryTabGroupSelectedIndex.set(this.summaryTabGroupSelectedIndex() + 1);
       return;
     }
 
-    if (this.lastTouchStart()!.clientX > this.lastTouchMove()!.clientX
-      && this.lastTouchStart()!.clientX - this.lastTouchMove()!.clientX > this.minSwipeDistance
-      && this.summaryTabGroupSelectedIndex() < this.summaryTabGroup!._tabs.length - 1) {
-      this.summaryTabGroupSelectedIndex.set(this.summaryTabGroupSelectedIndex() + 1);
-    }
-
-    if (this.lastTouchStart()!.clientX < this.lastTouchMove()!.clientX
-      && this.lastTouchMove()!.clientX - this.lastTouchStart()!.clientX > this.minSwipeDistance
-      && this.summaryTabGroupSelectedIndex() > 0) {
+    if (!next && this.summaryTabGroupSelectedIndex() > 0) {
       this.summaryTabGroupSelectedIndex.set(this.summaryTabGroupSelectedIndex() - 1);
     }
-  }
-
-  protected summarySwipeCancel() {
-    //if we run into a situation where the swipe is canceled,
-    //we reset the last saved values to not accidentally swipe if the user didn't decide to do so.
-    this.lastTouchStart.set(undefined);
-    this.lastTouchMove.set(undefined);
   }
 
   protected projectButtonClicked() {
