@@ -39,7 +39,7 @@ This will compile your project and store the build artifacts in the `dist/` dire
 build command to build for github pages:
 
 ```bash
-ng b -base-href /Irrlicht/
+ng b --base-href /Irrlicht/
 ```
 
 ## Running unit tests
