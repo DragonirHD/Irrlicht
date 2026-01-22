@@ -20,11 +20,7 @@ import {ProjectDocumentation} from './project-documentation/project-documentatio
 import {filter, firstValueFrom, Subscription} from 'rxjs';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
 import {ScrollHelperService} from '../../services/scrollHelper.service';
-import {MatButton, MatFabButton} from '@angular/material/button';
-import {MatIcon} from '@angular/material/icon';
-import {MatTree, MatTreeNode, MatTreeNodeDef, MatTreeNodePadding, MatTreeNodeToggle} from '@angular/material/tree';
-import {AnimationType} from '../../common/classes/AnimationType';
-import {AnimationHandler} from '../../services/animation-handler';
+import {ProjectDocumentationNavigation} from './project-documentation-navigation/project-documentation-navigation';
 
 @Component({
   selector: 'projects',
@@ -37,14 +33,7 @@ import {AnimationHandler} from '../../services/animation-handler';
     RouterLink,
     ProjectDocumentation,
     MatProgressSpinner,
-    MatButton,
-    MatIcon,
-    MatTree,
-    MatTreeNode,
-    MatTreeNodeDef,
-    MatTreeNodePadding,
-    MatTreeNodeToggle,
-    MatFabButton,
+    ProjectDocumentationNavigation,
   ],
   templateUrl: './projects.html',
   styleUrl: './projects.scss'
@@ -52,7 +41,7 @@ import {AnimationHandler} from '../../services/animation-handler';
 export class Projects implements OnInit, OnDestroy {
   @ViewChild('summaryTabGroup') summaryTabGroup: MatTabGroup | undefined;
   @ViewChild('projectDocumentation') projectDocumentation: ProjectDocumentation | undefined;
-  @ViewChild('documentationNavigationToggleButton') documentationNavigationToggleButton: MatFabButton | undefined;
+  @ViewChild('projectDocumentationNavigation') projectDocumentationNavigation: ProjectDocumentationNavigation | undefined;
   protected projects: Project[] = [];
   protected routerSubscription: Subscription | undefined;
   protected summaryTabGroupSelectedIndex: ModelSignal<number> = model(0);
@@ -61,24 +50,17 @@ export class Projects implements OnInit, OnDestroy {
   protected loading: boolean = false;
   protected minSwipeDistance = 25; //minimum distance in pixels that the user has to swipe from side to side that a swipe is registered
 
-  //documentation-navigation variables
-  protected navigationExpanded = false;
-  protected documentationNavigationDataSource: DocumentationNode[] = [];
-  protected childrenAccessor = (node: DocumentationNode) => node.children ?? [];
-  protected hasChild = (_: number, node: DocumentationNode) => !!node.children && node.children.length > 0;
-
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly projectService: ProjectService,
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly scrollHelperService: ScrollHelperService,
-    private readonly animationHandler: AnimationHandler,
   ) {
     effect(async () => {
       const selectedIndex = this.summaryTabGroupSelectedIndex();
       await this.projectDocumentation?.updateDocumentation(this.projects[selectedIndex].documentationUrl);
-      this.updateDocumentationNavigation();
+      this.projectDocumentationNavigation?.updateDocumentationNavigation();
     });
   }
 
@@ -107,38 +89,7 @@ export class Projects implements OnInit, OnDestroy {
     this.changeDetectorRef.detectChanges();
     await this.projectDocumentation?.updateDocumentation(this.projects[this.summaryTabGroupSelectedIndex()].documentationUrl);
     this.changeDetectorRef.detectChanges();
-    this.updateDocumentationNavigation();
-  }
-
-  private updateDocumentationNavigation() {
-    let documentationAnchors = document.getElementsByClassName("anchor-element");
-    let documentationNodes: DocumentationNode[] = [];
-    let lastH1Anchor: DocumentationNode | undefined;
-    let lastH2Anchor: DocumentationNode | undefined;
-
-    for (let anchor of documentationAnchors) {
-      let documentationNode: DocumentationNode = {
-        name: anchor.id.slice(anchor.id.indexOf("_") + 1).replaceAll('_', ' '),
-        route: anchor.id,
-        children: []
-      }
-      let anchorElementType = anchor.id.slice(14, anchor.id.indexOf("-", 14));
-      switch (anchorElementType) {
-        case 'H1':
-          lastH1Anchor = documentationNode;
-          documentationNodes.push(documentationNode);
-          break;
-        case 'H2':
-          lastH2Anchor = documentationNode;
-          lastH1Anchor?.children.push(documentationNode);
-          break;
-        case 'H3':
-          lastH2Anchor?.children.push(documentationNode);
-          break;
-      }
-    }
-
-    this.documentationNavigationDataSource = documentationNodes;
+    this.projectDocumentationNavigation?.updateDocumentationNavigation();
   }
 
   /**Used to add very limited swipe support to our tab group.*/
@@ -174,27 +125,7 @@ export class Projects implements OnInit, OnDestroy {
     this.scrollHelperService.scrollToTop();
   }
 
-  protected documentationNavigationToggle() {
-    if (this.documentationNavigationToggleButton) {
-      this.animationHandler.playOnce({
-        nativeElement: this.documentationNavigationToggleButton._elementRef.nativeElement.getElementsByTagName('mat-icon')[0] as HTMLElement,
-        animationType: AnimationType.RotationFull,
-      });
-    }
-    this.navigationExpanded = !this.navigationExpanded;
-  }
-
-  protected async documentationNavigationNodeClicked(headerId: string) {
-    document.getElementById(headerId)?.scrollIntoView({behavior: 'smooth'});
-  }
-
   ngOnDestroy() {
     this.routerSubscription?.unsubscribe();
   }
-}
-
-interface DocumentationNode {
-  name: string;
-  route: string;
-  children: DocumentationNode[];
 }

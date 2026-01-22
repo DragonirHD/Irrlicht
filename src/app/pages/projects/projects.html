@@ -50,33 +50,6 @@
       }
     </div>
 
-    <div class="documentation-navigation" [class.documentation-navigation--expanded]="navigationExpanded">
-      <button #documentationNavigationToggleButton matFab (click)="documentationNavigationToggle()">
-        <mat-icon>
-          {{ navigationExpanded ? 'arrow_forward' : 'list' }}
-        </mat-icon>
-      </button>
-      <mat-tree #tree [dataSource]="documentationNavigationDataSource" [childrenAccessor]="childrenAccessor">
-        <!-- Template for leaf nodes (non-expandable nodes) -->
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodePaddingIndent="20">
-          <button matButton (click)="documentationNavigationNodeClicked(node.route)">
-            {{ node.name }}
-          </button>
-
-        </mat-tree-node>
-        <!-- Template for expandable nodes -->
-        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodePaddingIndent="20"
-                       matTreeNodeToggle
-                       [cdkTreeNodeTypeaheadLabel]="node.name">
-          <button matButton matTreeNodeToggle (click)="documentationNavigationNodeClicked(node.route)"
-                  [attr.aria-label]="'Toggle ' + node.name">
-            {{ node.name }}
-            <mat-icon iconPositionEnd>
-              {{ tree.isExpanded(node) ? 'arrow_drop_down' : 'arrow_right' }}
-            </mat-icon>
-          </button>
-        </mat-tree-node>
-      </mat-tree>
-    </div>
+    <project-documentation-navigation #projectDocumentationNavigation/>
   }
 </main>
