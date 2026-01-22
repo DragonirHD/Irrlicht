@@ -36,10 +36,16 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-build command to build for github pages:
+build command to manually build for github pages (output in `dist/` will have to be commited to `gh-pages` branch):
 
 ```bash
 ng b --base-href /Irrlicht/
+```
+
+automatic build that direclty pushes to the `gh-pages` branch. This uses the deployment tool `angular-cli-ghpages`:
+
+```bash
+ng deploy --base-href=/Irrlicht/
 ```
 
 ## Running unit tests
