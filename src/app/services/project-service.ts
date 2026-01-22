@@ -7,7 +7,7 @@ import {lastValueFrom} from 'rxjs';
   providedIn: 'root',
 })
 export class ProjectService {
-  public readonly projectFileFolderPath: string = "../projectFiles/";
+  public readonly projectFileFolderPath: string = "projectFiles/";
   //array of all project names / file names in the projectFiles folder.
   //Needs to be updated when adding a new project.
   public readonly projectFolderNames: string[] = [
