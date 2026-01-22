@@ -1,0 +1,62 @@
+@use '../../../customVariables';
+
+.pixels-text-container {
+  font: var(--typography-title-font-medium);
+  text-shadow: -3px -3px 0 var(--mat-sys-background), 3px -3px 0 var(--mat-sys-background),
+  -3px 3px 0 var(--mat-sys-background), 3px 3px 0 var(--mat-sys-background);
+  text-align: center;
+  align-content: center;
+  text-transform: uppercase;
+  position: relative; //used to position the text above the overlay
+  pointer-events: none; //needed for the overlay to still receive pointer events
+
+  height: calc(100dvh - #{customVariables.$desktop-toolbar-height});
+
+  animation-name: popIn-less;
+  animation-duration: 0.75s;
+  animation-timing-function: ease-in-out;
+
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    height: calc(100dvh - #{customVariables.$mobile-toolbar-height});
+  }
+
+  p {
+    font: var(--typography-title-font-large);
+    margin: 0;
+    pointer-events: none;
+    animation-name: popIn;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-in-out;
+  }
+}
+
+.morphing-cube {
+  height: 20dvw;
+  aspect-ratio: 1;
+  max-height: 200px;
+  position: relative;
+  top: 10%;
+
+  &__cube {
+    height: 20dvw;
+    aspect-ratio: 1;
+    max-height: 200px;
+    background-color: var(--mat-sys-background);
+  }
+}
+
+.featured-project {
+
+  &__image-wrapper {
+    text-align: center;
+    align-content: center;
+
+    img {
+      max-height: 50dvh;
+      max-width: 100%;
+      height: auto;
+      width: auto;
+      object-fit: contain;
+    }
+  }
+}

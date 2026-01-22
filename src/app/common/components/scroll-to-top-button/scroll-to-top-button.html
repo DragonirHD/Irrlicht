@@ -1,0 +1,8 @@
+<button
+  matFab
+  [class.scroll-button-disabled]="atTop"
+  [disabled]="atTop"
+  (click)="scrollHelperService.scrollToTop()"
+>
+  <mat-icon>arrow_upward</mat-icon>
+</button>

@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+
+.theme-slide-toggle {
+  @include mat.slide-toggle-overrides((
+    //optional second design to make it more square
+    /*
+    track-outline-color: var(--mat-sys-primary),
+    handle-shape: 8px,
+    track-shape: 8px,
+    */
+  ))
+}
+

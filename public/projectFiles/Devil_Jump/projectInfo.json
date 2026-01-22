@@ -1,0 +1,35 @@
+{
+  "title": "Devil Jump",
+  "projectType": 1,
+  "index": 5,
+  "oneLine": "Doodle Jump but you fight Jesus",
+  "summary": "A game that mixes the concept of the game \"Doodle Jump\" with fighting against characters from the Bible. Implemented with custom platforming logic and weighted randomness to increase replayability and keep development costs low.\n\nThe elevator pitch for this game would be \"What if Doodle Jump, but you fight Jesus?\".\n Granted, that pitch would be for the quickest elevator ride ever, but it is pretty much what the game could be defined as in its simplest terms.",
+  "projectStatus": "V1 finished with plans to work on a v2 and v3",
+  "completionDateString": "02.01.2026",
+  "itchIoLink": "https://dragonirhd.itch.io/devil-jump",
+  "youtubeLink": "https://youtu.be/ClaMgiu8V6M",
+  "workedHours": 243,
+  "usedSoftware": [
+    "Unity (Game Engine)",
+    "Rider (IDE by JetBrains)",
+    "Aseprite (Pixel Art Tool)",
+    "Pixel FX Designer (Particle Effect Generator Tool)",
+    "Davinci Resolve (Audio & Video Editing)"
+  ],
+  "developedMechanics": [
+    "Custom platform spawning logic",
+    "Custom boss and attack logic",
+    "Custom 2D platformer character controller",
+    "Custom sound manager with crossfading support",
+    "Custom logic for level/stage changes with effects",
+    "Custom dialog system"
+  ],
+  "documentationName": "documentation_devil_jump.md",
+  "coverImageName": "devil_jump_cover_background.png",
+  "mainImageName": "devil_jump_gameplay_titlescreen.png",
+  "summaryImagesNames": [
+    "devil_jump_gameplay_tutorial.png",
+    "devil_jump_gameplay_hell.png",
+    "devil_jump_gameplay_earth.png"
+  ]
+}

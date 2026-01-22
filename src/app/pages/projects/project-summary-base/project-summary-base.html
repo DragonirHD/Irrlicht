@@ -1,0 +1,104 @@
+<mat-card class="gradient-border" style="min-height: 500px">
+  <mat-card-header>
+    Overview
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="side-by-side">
+      <div>
+        <p class="side-by-side__title">{{ project().title }}</p>
+        <p class="side-by-side__summary" [innerText]="project().summary"></p>
+        <table>
+          <tbody>
+          <tr>
+            <td><b>Project Type</b></td>
+            <td>
+              @switch (project().projectType) {
+                @case (1) {
+                  Game
+                }
+                @case (2) {
+                  Program
+                }
+                @case (3) {
+                  Drawing
+                }
+                @case (4) {
+                  2D Object
+                }
+                @case (5) {
+                  3D Object
+                }
+                @case (6) {
+                  Video
+                }
+                @default {
+                  Cannot be assigned to any type
+                }
+              }
+            </td>
+          </tr>
+          <tr>
+            <td><b>Project Status</b></td>
+            <td>{{ project().projectStatus }}</td>
+          </tr>
+          <tr>
+            <td><b>Completion Date / Milestone Reached</b></td>
+            <td>{{ project().completionDateString }}</td>
+          </tr>
+            @if (project().workedHours != 0) {
+              <tr>
+                <td><b>Worked Hours</b></td>
+                <td>{{ project().workedHours }}</td>
+              </tr>
+            }
+            @if (project().itchIoLink != null && project().itchIoLink != "") {
+              <tr>
+                <td><b>Itch.io Page</b></td>
+                <td><a href="{{project().itchIoLink}}" target="_blank">Go To Itch.Io page</a></td>
+              </tr>
+            }
+            @if (project().youtubeLink != null && project().youtubeLink != "") {
+              <tr>
+                <td><b>Demo/Playthrough Video</b></td>
+                <td><a href="{{project().youtubeLink}}" target="_blank">Go To Youtube Demo</a></td>
+              </tr>
+            }
+            @if (project().usedSoftware != null) {
+              <tr>
+                <td><b>Software Used</b></td>
+                <td>
+                  <ul>
+                    @for (software of project().usedSoftware; track software) {
+                      <li>{{ software }}</li>
+                    }
+                  </ul>
+                </td>
+              </tr>
+            }
+            @if (project().developedMechanics != null) {
+              <tr>
+                <td><b>Key Mechanics</b></td>
+                <td>
+                  <ul>
+                    @for (mechanic of project().developedMechanics; track mechanic) {
+                      <li>{{ mechanic }}</li>
+                    }
+                  </ul>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="summary-images-container">
+        @for (imageUrl of project().summaryImagesUrls; track imageUrl) {
+          <div class="image-wrapper">
+            <img (click)="imageViewerService.showImageDialog(imageUrl)" src="{{imageUrl}}"
+                 alt="summary image of the currently displayed project">
+          </div>
+        }
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

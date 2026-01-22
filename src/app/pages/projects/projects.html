@@ -1,0 +1,55 @@
+<main>
+  @if (loading) {
+    <mat-spinner class="c-spinner-view"/>
+  } @else {
+    <div class="c-whitespace-container--wide">
+      <mat-tab-group
+        #summaryTabGroup
+        [(selectedIndex)]="summaryTabGroupSelectedIndex"
+        fitInkBarToContent
+        mat-stretch-tabs="false"
+        mat-align-tabs="center"
+        headerPosition="below"
+        (touchstart)="lastTouchStart.set($event.touches[0])"
+        (touchmove)="lastTouchMove.set($event.touches[0])"
+        (touchend)="summarySwipeEnd()"
+        (touchcancel)="summarySwipeCancel()"
+      >
+        @for (project of projects; track project) {
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <span class="tab-selector"></span>
+            </ng-template>
+            <project-summary-base [project]="project"/>
+          </mat-tab>
+        }
+      </mat-tab-group>
+    </div>
+
+    <div class="subtitle c-whitespace-container--wide">
+      Project Documentation
+    </div>
+
+    <project-documentation #projectDocumentation/>
+
+    <div class="subtitle c-whitespace-container--wide">
+      Find out more about other Projects
+    </div>
+
+    <div class="c-whitespace-container--slim">
+      @for (project of projects; track project) {
+        @if (project.index != summaryTabGroupSelectedIndex()) {
+          <card-selector
+            [title]="project.title"
+            [subtitle]="project.oneLine"
+            [imageUrl]="project.coverImageUrl"
+            [routerLink]="`/projects/${project.folderName}`"
+            (click)="projectButtonClicked()"
+          />
+        }
+      }
+    </div>
+
+    <project-documentation-navigation #projectDocumentationNavigation/>
+  }
+</main>

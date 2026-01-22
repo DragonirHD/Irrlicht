@@ -1,0 +1,16 @@
+<mat-card
+  [style.background-image]="'url(' + imageUrl + ')'"
+  [ngClass]="{ 'holoCard': !disableHoloCardEffect }"
+  (click)="onClick($event)"
+>
+  <mat-card-header>
+    {{ title }}
+  </mat-card-header>
+  <mat-card-content>
+    <div class="text">
+      {{ subtitle }}
+    </div>
+    <mat-icon>chevron_right</mat-icon>
+  </mat-card-content>
+</mat-card>
+

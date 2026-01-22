@@ -1,0 +1,15 @@
+<div
+  #pixelsOverlayContainer
+  class="pixels-overlay__container"
+>
+  @if (pixels().length > 0) {
+    @for (pixel of pixels(); track pixel.id) {
+      <div
+        id="pixel-number-{{pixel.id}}"
+        class="pixels-overlay__container__pixel pixels-overlay__container__pixel--type-{{pixel.type}}"
+        [ngStyle]="{'width': pixelSize + 'px', 'height': pixelSize + 'px'}"
+      >
+      </div>
+    }
+  }
+</div>

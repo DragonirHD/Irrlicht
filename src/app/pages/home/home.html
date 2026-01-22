@@ -1,0 +1,169 @@
+<main>
+  <pixels-overlay/>
+  <div class="pixels-text-container c-whitespace-container--slim">
+    creating stories
+    <p>{{ activeTitleWord | async }}</p>
+    by
+    <p>{{ activeTitleWord | async }}</p>
+  </div>
+
+  <div #contentPane class="content-pane content-pane--split">
+    <div class="content-pane__block content-pane__block--left">
+      <p #contentPaneText
+         class="content-pane__header"
+         observeVisibility
+         [debounceTime]="0"
+         (visible)="contentPaneVisible($event)"
+      >
+        Welcome to my page!
+      </p>
+      <h1 #contentPaneText
+          class="content-pane__text"
+          observeVisibility
+          [debounceTime]="0"
+          (visible)="contentPaneVisible($event)"
+      >
+        This website is a place for me to upload and document my projects.
+        <br>
+        There's currently not much around, but I intend to keep expanding this page, to maybe use it in the future as
+        homepage for a game studio.
+        <br>
+        While you're already here, make sure to check out some of my <a [routerLink]="['projects']">projects</a> and
+        explore the website a bit.
+        <br>
+        Have fun ^^
+      </h1>
+    </div>
+    <div class="content-pane__block content-pane__block--right content-pane__block--image-wrapper">
+      <img src="/assets/miko_idle_weapon_scaled_x8_adjusted.gif" alt="animated miko player character">
+    </div>
+  </div>
+
+  <div #contentPane class="content-pane content-pane--block-title">
+    <p #contentPaneText
+       class="content-pane__header--accent"
+       observeVisibility
+       [debounceTime]="0"
+       (visible)="contentPaneVisible($event)"
+    >
+      Featured Project
+    </p>
+  </div>
+
+  @if (featuredProject) {
+    <div class="featured-project">
+      <div class="featured-project__image-wrapper c-whitespace-container--wide">
+        <img
+          src="{{featuredProject.mainImageUrl}}"
+          alt="Main visual of the featured project"
+        >
+      </div>
+
+      <div class="c-whitespace-container--slim">
+        <card-selector
+          [title]="featuredProject.title"
+          [subtitle]="featuredProject.oneLine"
+          [imageUrl]="featuredProject.coverImageUrl"
+          [routerLink]="`/projects/${featuredProject.folderName}`"
+        />
+      </div>
+    </div>
+  }
+
+  <div #contentPane class="content-pane content-pane--split">
+    <div class="content-pane__block content-pane__block--left">
+      <p #contentPaneText
+         class="content-pane__header"
+         observeVisibility
+         [debounceTime]="0"
+         (visible)="contentPaneVisible($event)"
+      >
+        It's not just <span style="font: var(--typography-header-font-large-accent)">Pixels</span>
+      </p>
+      <h1 #contentPaneText
+          class="content-pane__text"
+          observeVisibility
+          [debounceTime]="0"
+          (visible)="contentPaneVisible($event)"
+      >
+        We do not intend to limit ourselves to one singular style.
+        Our art direction changes case by case according to what we think would support the underlying gameplay best.
+      </h1>
+    </div>
+    <div class="content-pane__block content-pane__block--right">
+      <div class="morphing-cube animation__jump">
+        <div class="morphing-cube__cube animation__morph-rotating"></div>
+      </div>
+    </div>
+  </div>
+
+  <div #contentPane class="content-pane">
+    <p #contentPaneText
+       class="content-pane__header"
+       observeVisibility
+       [debounceTime]="0"
+       (visible)="contentPaneVisible($event)"
+    >
+      Read more about our great <a [routerLink]="['team']">Team</a>
+    </p>
+  </div>
+
+  <div #contentPane class="content-pane">
+    <p #contentPaneText
+       class="content-pane__header"
+       observeVisibility
+       [debounceTime]="0"
+       (visible)="contentPaneVisible($event)"
+    >
+      For requests or questions, get in touch with us <a [routerLink]="['contact']">here</a>
+    </p>
+  </div>
+
+  <div #contentPane class="content-pane">
+    <p #contentPaneText
+       class="content-pane__header"
+       observeVisibility
+       [debounceTime]="0"
+       (visible)="contentPaneVisible($event)"
+    >
+      Support
+    </p>
+    <p #contentPaneText
+       class="content-pane__text"
+       observeVisibility
+       [debounceTime]="0"
+       (visible)="contentPaneVisible($event)"
+    >
+      There is currently no direct way to support us, other than over our projects on itch.io.
+      <br>
+      But you just reading this already means much to us.
+      <br>
+      If you like our projects, you can let us know over on our social media channels. (Will be added in the future)
+    </p>
+  </div>
+
+  <div #contentPane class="content-pane">
+    <p #contentPaneText
+       class="content-pane__header"
+       observeVisibility
+       [debounceTime]="0"
+       (visible)="contentPaneVisible($event)"
+    >
+      Website Info
+    </p>
+    <p #contentPaneText
+       class="content-pane__text"
+       observeVisibility
+       [debounceTime]="0"
+       (visible)="contentPaneVisible($event)"
+    >
+      This website is being made with Angular and Angular Material.
+      <br>
+      The components are all mostly made in house and without any code written by AI. This is done to build up and
+      increase our own knowledge about web design and to give the website a unique and custom feel.
+      <br>
+      The website is built with a responsive design that supports mobile devices of sizes down to 360px and also comes
+      with dark-/light-mode that automatically adjusts to the users preferences.
+    </p>
+  </div>
+</main>

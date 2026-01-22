@@ -1,0 +1,20 @@
+@use '../../../customVariables';
+
+.tab-selector {
+  height: 15px;
+  aspect-ratio: 1;
+  background-color: var(--mat-sys-primary);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.subtitle {
+  margin-top: 8vh;
+  font: var(--typography-header-font-large);
+  text-align: center;
+  align-content: center;
+}
+
+.mat-mdc-tab-labels {
+  max-width: 30px;
+}

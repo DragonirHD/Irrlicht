@@ -1,5 +1,54 @@
 @use '@angular/material' as mat;
-@use 'common/animations.scss';
+@use 'customVariables';
+@use 'app/common/animations';
+
+@use 'customStyles/customTypography';
+@use 'customStyles/customThemes' as customThemes;
+@use 'customStyles/c-whitespace-container';
+@use 'customStyles/c-content-pane';
+@use 'customStyles/c-spinner';
+@use 'customStyles/markdown-styles';
+
+:root {
+  //custom global variable declaration
+
+  //the following variables are set and updated in sidenav-mode-toggle.ts
+  --sidenav-open: false; //true if the sidenav is open
+  --sidenav-mode: ""; //string of the current MatDrawerMode that the sidenav is in
+  --sidenav-width: #{customVariables.$sidenav-width};
+  --sidenav-open-width: 0px; //set to the same value as --sidenav-width but only when sidenav is open
+
+  @include mat.theme((
+    color: (
+      primary: mat.$violet-palette,
+    ),
+    typography: (
+      plain-family: Roboto,
+      brand-family: "Jersey 15",
+    ),
+    density: 0
+  ));
+
+  //theme-light
+  color-scheme: light;
+  --app-primary: #ff9900;
+  --app-on-primary: #ff5900;
+  --app-background: #ffffff;
+  --app-text: #000000;
+
+  --mat-sys-primary: var(--app-primary);
+  --mat-sys-on-primary: var(--app-on-primary);
+  --mat-sys-background: var(--app-background);
+  --mat-sys-on-surface: var(--app-text);
+}
+
+:root.theme-dark {
+  color-scheme: dark;
+  --app-primary: #7000B0;
+  --app-on-primary: #ffffff;
+  --app-background: #000000;
+  --app-text: #ffffff;
+}
 
 html {
   height: 100dvh;
@@ -9,21 +58,66 @@ html {
 body {
   height: 100%;
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  @include mat.theme((
-    //color: (
-    //  theme-type: light,
-    //  primary: mat.$azure-palette,
-    //  tertiary: mat.$blue-palette,
-    //),
-    color: mat.$cyan-palette,
-    typography: Roboto,
-    density: 0,
-  ));
+  font-family: Roboto, "Helvetica Neue", "Jersey 15", sans-serif;
+
+  //START MAT TOOLBAR OVERRIDES
 
   @include mat.toolbar-overrides((
     container-background-color: var(--mat-sys-secondary),
-  ))
+  ));
+
+  mat-toolbar {
+    height: customVariables.$mobile-toolbar-height !important;
+
+    @media only screen and (min-width: customVariables.$desktop-min-width) {
+      height: customVariables.$desktop-toolbar-height !important;
+    }
+  }
+
+  //START MAT SIDENAV OVERRIDES
+
+  @include mat.sidenav-overrides((
+    container-shape: 0%,
+    container-width: 180px,
+  ));
+
+  //START MAT TAB OVERRIDES
+
+  @include mat.tabs-overrides((
+    divider-height: 5px,
+    divider-color: transparent,
+    container-height: 35px,
+  ));
+
+  .mdc-tab {
+    min-width: unset !important;
+    padding: 0 10px !important;
+    border-radius: 50%;
+
+    .mat-ripple {
+      border-radius: 50% !important;
+    }
+
+    .mdc-tab__ripple::before {
+      border-radius: 50% !important;
+    }
+
+    .mdc-tab__text-label {
+      transition: all 0.5s ease;
+    }
+  }
+
+  .mdc-tab--active {
+    .mdc-tab__text-label {
+      transform: scale(1.5);
+    }
+  }
+
+  .mdc-tab:hover {
+    .mdc-tab__text-label {
+      transform: scale(1.5);
+    }
+  }
 }
 
 header {
@@ -39,7 +133,11 @@ body.theme-light {
 }
 
 .gradient-border {
-  $border: 5px;
+  $border: 10px;
+  margin: $border;
+
+  background-clip: padding-box;
+  border: solid $border transparent;
 
   &:before {
     content: '';

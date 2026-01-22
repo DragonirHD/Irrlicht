@@ -1,0 +1,185 @@
+@keyframes rotation-full {
+  from {
+    rotate: 0deg
+  }
+  to {
+    rotate: 360deg
+  }
+}
+
+.animation__rotation-full {
+  animation-name: rotation-full;
+  animation-duration: 0.5s;
+}
+
+@keyframes rotation-half {
+  from {
+    rotate: 0deg
+  }
+  to {
+    rotate: 180deg
+  }
+}
+
+.animation__rotation-half {
+  animation-name: rotation-half;
+  animation-duration: 0.25s;
+}
+
+@keyframes wobble {
+  0% {
+    rotate: 0deg
+  }
+  20% {
+    rotate: 10deg
+  }
+  40% {
+    rotate: -10deg
+  }
+}
+
+.animation__wobble {
+  animation-name: wobble;
+  animation-duration: 0.75s;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animation__popIn {
+  animation-name: popIn;
+  animation-duration: 0.75s;
+}
+
+@keyframes popIn-less {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animation__popIn-less {
+  animation-name: popIn;
+  animation-duration: 0.75s;
+}
+
+@keyframes fadeIn-up {
+  0% {
+    opacity: 0;
+    transform: translateY(80%);
+  }
+  20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.animation__fadeIn-up {
+  animation-name: fadeIn-up;
+  animation-duration: 0.75s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes morph-rotating {
+  0% {
+    rotate: 0deg;
+    border-radius: 0;
+  }
+  50% {
+    border-radius: 50%;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+
+.animation__morph-rotating {
+  animation-name: morph-rotating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0%);
+  }
+  10% {
+    transform: translateY(-20%);
+  }
+  20% {
+    transform: translateY(-30%);
+  }
+  30% {
+    transform: translateY(-36%);
+  }
+  40% {
+    transform: translateY(-39%);
+  }
+  50% {
+    transform: translateY(-40%);
+  }
+  60% {
+    transform: translateY(-39%);
+  }
+  70% {
+    transform: translateY(-36%);
+  }
+  80% {
+    transform: translateY(-30%);
+  }
+  90% {
+    transform: translateY(-20%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.animation__jump {
+  animation-name: jump;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes hover {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.animation__hover {
+  animation-name: hover;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}

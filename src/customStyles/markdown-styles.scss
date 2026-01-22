@@ -1,0 +1,15 @@
+.markdownContainer {
+  text-align: justify;
+
+  img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  th, td {
+    border-right: solid var(--mat-sys-on-surface) 1px;
+
+    border-top: solid var(--mat-sys-on-surface) 1px;
+  }
+}
