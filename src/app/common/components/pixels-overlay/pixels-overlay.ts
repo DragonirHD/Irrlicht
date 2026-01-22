@@ -40,8 +40,9 @@ export class PixelsOverlay implements AfterViewInit, OnDestroy {
       this.resizeObserver.observe(this.pixelsOverlayContainer.nativeElement);
     }
 
-    //check if user has any input that can toggle hover states
-    const canHover = window.matchMedia(`(any-hover: hover)`).matches;
+    //check if users main input can toggle hover states and is fine (basically checking if the input is something like a mouse)
+    const canHover = window.matchMedia(`(hover: hover)`).matches &&
+      matchMedia('(pointer: fine)').matches;
 
     //if user has no input that can toggle hover states, we animate the hover states of the pixels programmatically.
     if (!canHover) {
