@@ -1,5 +1,6 @@
 .markdownContainer {
   text-align: justify;
+  overflow-wrap: anywhere;
 
   img {
     max-width: 100%;
@@ -7,9 +8,14 @@
     margin: 0 auto;
   }
 
-  th, td {
-    border-right: solid var(--mat-sys-on-surface) 1px;
+  //gives the table a normal border
+  table, th, td {
+    text-align: initial;
+    border: solid var(--mat-sys-on-surface) 1px;
+    border-collapse: collapse;
+  }
 
-    border-top: solid var(--mat-sys-on-surface) 1px;
+  th, td {
+    padding: 5px;
   }
 }

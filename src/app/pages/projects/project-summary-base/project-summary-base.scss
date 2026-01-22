@@ -28,10 +28,16 @@ mat-card-content {
 
   table {
     width: 100%;
+  }
 
-    td {
-      border: solid var(--mat-sys-on-surface) 1px;
-    }
+  //gives the table a normal border
+  table, th, td {
+    border: solid var(--mat-sys-on-surface) 1px;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 5px;
   }
 
   @media only screen and (max-width: customVariables.$mobile-max-width) {
