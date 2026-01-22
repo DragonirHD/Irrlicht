@@ -3,13 +3,13 @@
 button {
   position: fixed;
   z-index: 10000;
-  top: 80vh;
+  bottom: 15dvh;
   right: 45px;
   opacity: 1;
   transition: opacity 0.5s ease;
 
   @media only screen and (max-width: customVariables.$mobile-max-width) {
-    top: 90vh;
+    bottom: 5dvh;
     right: 30px;
   }
 }
