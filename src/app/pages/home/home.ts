@@ -8,7 +8,6 @@ import {ProjectService} from '../../services/project-service';
 import {Project} from '../../common/classes/Project';
 import {TypewriterService} from '../../services/typewriter.service';
 import {RouterLink} from '@angular/router';
-import {ImageViewerService} from '../../services/image-viewer.service';
 
 @Component({
   selector: 'home',
@@ -37,7 +36,6 @@ export class Home implements AfterViewInit {
   constructor(
     private readonly projectService: ProjectService,
     private readonly typewriterService: TypewriterService,
-    protected readonly imageViewerService: ImageViewerService
   ) {
 
   }

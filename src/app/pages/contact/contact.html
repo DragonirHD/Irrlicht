@@ -1,3 +1,18 @@
+<main>
+  <div #contentPane class="content-pane">
+    <p #contentPaneText
+       class="content-pane__header--accent"
+       observeVisibility
+       [debounceTime]="0"
+       (visible)="contentPaneVisible($event)"
+    >
+      Under Construction
+    </p>
+    <img class="animation__hover" src="/assets/servant_builder_animated_outline.gif" alt="animated worker demon">
+  </div>
+</main>
+
+
 <div class="typographyTestContainer">
   <p style="font: var(--typography-title-font-large)">title-font-large</p>
   <p style="font: var(--typography-title-font-medium)">title-font-medium</p>

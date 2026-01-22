@@ -164,3 +164,22 @@
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
+
+@keyframes hover {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.animation__hover {
+  animation-name: hover;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
