@@ -1,0 +1,25 @@
+{
+  "title": "Text Adventure",
+  "projectType": 1,
+  "index": 0,
+  "oneLine": "Ever heard of DnD?",
+  "summary": "The first game I ever made and one of the first programs I wrote on my own.\nThis little text adventure game lets the player go on quests that they can influence however they like.\nIt includes many different experiences and can change drastically depending on the route the player chooses. The playthroughs aren't particularly long, but it is a lot of fun to play through all the routes and see what wacky adventures you can go on.",
+  "projectStatus": "Completed",
+  "completionDateString": "05.11.2018",
+  "youtubeLink": "https://youtu.be/wMWe7I5ARfE",
+  "workedHours": 20,
+  "usedSoftware": [
+    "VisualStudio (IDE by Microsoft)"
+  ],
+  "developedMechanics": [
+    "Custom multi-path system"
+  ],
+  "documentationName": "documentation_text_adventure.md",
+  "coverImageName": "borders.png",
+  "mainImageName": "text_adventure_start_adjusted.png",
+  "summaryImagesNames": [
+    "text_adventure_character_choice_adjusted.png",
+    "text_adventure_start_adjusted.png",
+    "text_adventure_bossfight_adjusted.png"
+  ]
+}

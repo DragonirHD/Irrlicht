@@ -1,0 +1,25 @@
+{
+  "title": "Tranquility",
+  "projectType": 4,
+  "index": 4,
+  "oneLine": "A dread inducing loop",
+  "summary": "",
+  "projectStatus": "Completed",
+  "completionDateString": "13.02.2024",
+  "youtubeLink": "https://youtu.be/cvsjbm5m90A",
+  "workedHours": 56,
+  "usedSoftware": [
+    "Blender",
+    "Davinci Resolve (Audio & Video Editing)"
+  ],
+  "developedMechanics": [
+    "Acquired more knowledge about hard-surface modelling"
+  ],
+  "coverImageName": "tranquility_screenshot_1.png",
+  "mainImageName": "tranquility_screenshot_1.png",
+  "summaryImagesNames": [
+    "tranquility_hard_surface_desk.png",
+    "tranquility_hard_surface_scene.png",
+    "tranquility_screenshot_1.png"
+  ]
+}
