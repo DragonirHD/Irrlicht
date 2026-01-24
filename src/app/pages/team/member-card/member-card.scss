@@ -1,0 +1,31 @@
+@use '../../../../customVariables';
+
+mat-card {
+  mat-card-title {
+    font: var(--typography-header-font-medium-accent);
+  }
+
+  .profile-image-wrapper {
+    border-radius: 10px;
+  }
+
+  mat-card-content {
+    min-height: 600px;
+  }
+
+  .profile-placeholder {
+    display: flex;
+    width: 345px;
+    height: 460px;
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+      height: auto;
+      width: auto;
+      font-size: 245px;
+    }
+  }
+}
+
+

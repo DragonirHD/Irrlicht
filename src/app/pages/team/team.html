@@ -1,13 +1,27 @@
 <main>
-  <div #contentPane class="content-pane">
-    <p #contentPaneText
-       class="content-pane__header--accent"
-       observeVisibility
-       [debounceTime]="0"
-       (visible)="contentPaneVisible($event)"
-    >
-      Under Construction
-    </p>
-    <img class="animation__hover" src="assets/servant_builder_animated_outline.gif" alt="animated worker demon">
-  </div>
+  @if (loading) {
+    <mat-spinner class="c-spinner-view"/>
+  } @else {
+    <div #contentPane class="content-pane content-pane--block-title">
+      <p #contentPaneText
+         class="content-pane__header--accent"
+         observeVisibility
+         [debounceTime]="0"
+         (visible)="contentPaneVisible($event)"
+      >
+        Members
+      </p>
+    </div>
+    <div class="member-container c-whitespace-container--wide">
+      @for (teamMember of teamMembers; track teamMember.index) {
+        <member-card
+          [member]="teamMember"
+          observeVisibility
+          [threshold]="0.01"
+          [debounceTime]="0"
+          (visible)="contentPaneVisible($event)"
+        />
+      }
+    </div>
+  }
 </main>

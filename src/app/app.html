@@ -51,8 +51,10 @@
       </mat-tree>
       <sidenav-mode-toggle [sidenav]="sidenav"/>
     </mat-drawer>
-    <full-page-loader/>
-    <scroll-to-top-button/>
-    <router-outlet/>
+    <mat-drawer-content cdkScrollable>
+      <full-page-loader/>
+      <scroll-to-top-button/>
+      <router-outlet/>
+    </mat-drawer-content>
   </mat-drawer-container>
 </div>
