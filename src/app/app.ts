@@ -51,6 +51,8 @@ export class App {
     });
 
     this.projectNames = this.projectService.projectFolderNames;
+    this.projectNames.reverse();
+
     this.populateSidenav();
   }
 

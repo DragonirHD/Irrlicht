@@ -10,6 +10,7 @@ export class ProjectService {
   public readonly projectFileFolderPath: string = "projectFiles/";
   //array of all project names / file names in the projectFiles folder.
   //Needs to be updated when adding a new project.
+  //New projects should be added to the end of the list, to keep the list ordered by completion date
   public readonly projectFolderNames: string[] = [
     'Text_Adventure',
     'Atari_Breakout_Clone',

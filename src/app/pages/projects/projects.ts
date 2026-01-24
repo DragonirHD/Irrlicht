@@ -55,6 +55,7 @@ export class Projects implements OnInit, OnDestroy {
   async ngOnInit() {
     this.loading = true;
     this.projects = await this.projectService.getProjects();
+    this.projects.reverse();
 
     //Get initial project from route
     const routeParams = await firstValueFrom(this.route.params);
