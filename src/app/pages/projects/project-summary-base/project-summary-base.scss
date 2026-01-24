@@ -5,9 +5,13 @@ mat-card-header {
 }
 
 mat-card-content {
-  min-height: 70vh;
-  max-height: 70vh;
+  height: calc(70dvh - #{customVariables.$desktop-toolbar-height});
+  min-height: 450px;
   overflow-y: scroll;
+
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    height: calc(50dvh - #{customVariables.$mobile-toolbar-height});
+  }
 }
 
 .side-by-side {
