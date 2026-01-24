@@ -1,6 +1,9 @@
 .markdownContainer {
-  text-align: justify;
   overflow-wrap: anywhere;
+
+  p {
+    text-align: justify;
+  }
 
   img {
     max-width: 100%;
