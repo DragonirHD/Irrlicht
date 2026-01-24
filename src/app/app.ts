@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Router, RouterLink, RouterOutlet} from '@angular/router';
+import {NavigationEnd, Router, RouterLink, RouterOutlet} from '@angular/router';
 import {MatToolbar} from '@angular/material/toolbar';
 import {MatButtonModule, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
@@ -15,6 +15,7 @@ import {ProjectService} from './services/project-service';
 import {FullPageLoader} from './common/components/full-page-loader/full-page-loader';
 import {ScrollToTopButton} from './common/components/scroll-to-top-button/scroll-to-top-button';
 import {MatTree, MatTreeNode, MatTreeNodeDef, MatTreeNodePadding, MatTreeNodeToggle} from '@angular/material/tree';
+import {CdkScrollable} from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,7 @@ import {MatTree, MatTreeNode, MatTreeNodeDef, MatTreeNodePadding, MatTreeNodeTog
 export class App {
   @ViewChild("sidenav") sidenav: MatDrawer | undefined;
   @ViewChild("sidenavToggleButton") sidenavToggleButton: MatIconButton | undefined;
+  @ViewChild(CdkScrollable) scrollableElement: CdkScrollable | undefined;
 
   protected projectNames: string[];
   protected projectTreeDataSource: SideNavNode[] = [];
@@ -37,9 +39,14 @@ export class App {
     private readonly projectService: ProjectService,
   ) {
     //on routing changes, the sidenav should close if it is in the "over" mode.
-    this.router.events.subscribe(() => {
+    this.router.events.subscribe((event) => {
       if (this.sidenav?.mode == "over") {
         this.sidenav.close();
+      }
+
+      //on routing changes, scroll back to the top. Has to be done like this because Angular Routing can only scroll window, and no other elements
+      if (event instanceof NavigationEnd) {
+        this.scrollableElement?.scrollTo({top: 0, left: 0});
       }
     });
 

@@ -1,0 +1,33 @@
+<mat-card class="gradient-border">
+  <mat-card-header>
+    <mat-card-title>
+      {{ member.firstName }} {{ member.lastName }}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{ member.description }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="profile-image-wrapper">
+      @if (member.imageUrl != "") {
+        @if (member.index == 0) {
+          <img mat-card-image [ngSrc]="member.imageUrl" priority width="345" height="460"
+               alt="Team member profile image">
+        } @else {
+          <img mat-card-image [ngSrc]="member.imageUrl" width="345" height="460" alt="Team member profile image">
+        }
+      } @else {
+        <div class="profile-placeholder">
+          <mat-icon class="material-symbols-outlined">frame_person</mat-icon>
+        </div>
+      }
+    </div>
+    <p><b>Skills</b></p>
+    <ul class="profile-skill-list">
+      @for (skill of member.getSkillText(); track skill) {
+        <li>{{ skill }}</li>
+      }
+    </ul>
+  </mat-card-content>
+</mat-card>
