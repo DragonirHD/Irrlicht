@@ -3,11 +3,13 @@ import {HttpClient} from '@angular/common/http';
 import {marked} from 'marked';
 import {firstValueFrom} from 'rxjs';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {SafeHtmlPipe} from '../../../common/pipes/safe-html-pipe';
 
 @Component({
   selector: 'project-documentation',
   imports: [
-    MatProgressSpinner
+    MatProgressSpinner,
+    SafeHtmlPipe
   ],
   templateUrl: './project-documentation.html',
   styleUrl: './project-documentation.scss'
