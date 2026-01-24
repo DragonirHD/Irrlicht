@@ -56,11 +56,9 @@ The platform generator already works well, but the calculation for the platform 
 
 The platform types I currently have are:
 
-Default Platform: just a platform (pretty self-explanatory)
-
-High Jump Platform: gives the player a boost when jumping from it
-
-Horizontal Moving Platform: moves horizontally (also self-explanatory)
+- Default Platform: just a platform (pretty self-explanatory)
+- High Jump Platform: gives the player a boost when jumping from it
+- Horizontal Moving Platform: moves horizontally (also self-explanatory)
 
 The only one I'm currently actively working on is the "Horizontal Moving Platform" as it doesn't work well with my character movement. The character slides around on the platform, and If I try to do vertical movement, the character starts bouncing on the platform as it moves faster than gravity acts on the player. These are issues that I want to fix first, before going back to the platform generation code.
 
