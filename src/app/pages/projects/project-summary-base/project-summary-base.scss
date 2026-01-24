@@ -63,7 +63,9 @@ mat-card-content {
   //necessary to keep images with different size ratios always at the correct ratio, without stretching the image
   .image-wrapper {
     width: 100%;
-    height: 21.5vh;
+    //distribute the mat-content height equally over all three pictures
+    height: calc(70dvh / 3 - #{customVariables.$desktop-toolbar-height});
+    min-height: calc(450px / 3);
     padding-block: 0.5vh;
     text-align: center;
     align-content: center;
@@ -83,5 +85,13 @@ mat-card-content {
   @media only screen and (max-width: customVariables.$mobile-max-width) {
     padding-left: unset;
     padding-block: 2vh;
+
+    .image-wrapper {
+      height: 100%;
+
+      img {
+        max-height: 450px;
+      }
+    }
   }
 }
