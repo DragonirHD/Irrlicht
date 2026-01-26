@@ -3,7 +3,7 @@
   "projectType": 4,
   "index": 3,
   "oneLine": "Main character of a forgotten game",
-  "summary": "",
+  "summary": "This character was meant to become the main character for a 2D Platforming game.\nThe design is based on Japanese shrine maidens, also known as Miko.",
   "projectStatus": "Completed",
   "completionDateString": "05.01.2024",
   "workedHours": 10,
@@ -14,6 +14,7 @@
     "Designing Pixel Art Characters at a higher pixel count",
     "Creating high fidelity Pixel Art animations"
   ],
+  "documentationName": "documentation_miko_character.md",
   "coverImageName": "miko_background.png",
   "mainImageName": "player_idle_weapon_visualisation_6_background.png",
   "summaryImagesNames": [
