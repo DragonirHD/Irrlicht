@@ -35,7 +35,7 @@
 
     <div class="c-whitespace-container--slim">
       @for (project of projects; track project) {
-        @if (project.index != summaryTabGroupSelectedIndex()) {
+        @if (project.index != projects[summaryTabGroupSelectedIndex()].index) {
           <card-selector
             [title]="project.title"
             [subtitle]="project.oneLine"
