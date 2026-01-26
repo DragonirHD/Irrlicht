@@ -26,6 +26,18 @@ mat-card {
       font-size: 245px;
     }
   }
+
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    .profile-placeholder {
+      width: 297px;
+      height: 396px;
+    }
+
+    img {
+      width: 297px;
+      height: 396px;
+    }
+  }
 }
 
 
