@@ -18,6 +18,7 @@ export class ProjectService {
     'Miko_Player_Character',
     'Tranquility',
     'Devil_Jump',
+    'Cheese_Trails'
   ];
 
   assetFolderName: string = 'assets';

@@ -1,0 +1,33 @@
+{
+  "title": "Cheese Trails",
+  "projectType": 1,
+  "index": 6,
+  "oneLine": "The smelly Dream of every Rodent",
+  "summary": "A top-down adventure/puzzle game where you play as a mouse exploring below the floorboards of multiple houses to find some cheese. \n\nMade for an entry-assignment for the game Design course at ZHdK with the given theme “Spur / Trace” \n\nThe game was made in Unity and over the course of ~2½ Weeks, with around 130 hours spent on concept and development.",
+  "projectStatus": "Prototype with 3 Levels and a Tutorial finished",
+  "completionDateString": "10.02.2026",
+  "itchIoLink": "https://dragonirhd.itch.io/cheese-trails",
+  "youtubeLink": "https://youtu.be/mCn2L_W2pS4",
+  "workedHours": 134,
+  "usedSoftware": [
+    "Unity (Game Engine)",
+    "Rider (IDE by JetBrains)",
+    "Aseprite (Pixel Art Tool)",
+    "Pixel FX Designer (Particle Effect Generator Tool)",
+    "Davinci Resolve (Audio & Video Editing)"
+  ],
+  "developedMechanics": [
+    "Custom \"tank\"-style player controller",
+    "Multiple different levels designed with self made Tilemaps",
+    "Interactive Tutorial",
+    "Custom scoring system"
+  ],
+  "documentationName": "documentation_cheese_trails.md",
+  "coverImageName": "cheese_trails_title.png",
+  "mainImageName": "cheese_trails_gameplay_tutorial.png",
+  "summaryImagesNames": [
+    "cheese_trails_gameplay_level-selection.png",
+    "cheese_trails_gameplay_lvl1_chase.png",
+    "cheese_trails_gameplay_lvl1_coin.png"
+  ]
+}
