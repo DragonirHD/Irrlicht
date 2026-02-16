@@ -47,17 +47,28 @@
 
 .fab-overlay {
   position: relative;
-  top: -45px;
+  top: -60px;
+  display: flex;
+  justify-content: center;
 
-  button {
+  &__row {
     position: absolute;
     display: flex;
-    left: 65dvw;
-    height: fit-content;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  button {
+    display: flex;
+    height: 90px;
+    width: 90px;
     flex-direction: column;
     align-content: center;
     padding-block: 10px;
-    scale: 150%;
+    margin-left: 50px;
+    scale: 120%;
 
     mat-icon {
       scale: 120%;
@@ -69,6 +80,11 @@
   @media only screen and (max-width: customVariables.$mobile-max-width) {
     button {
       scale: 80%;
+      margin-left: 10px;
+    }
+
+    &__row {
+      justify-content: center;
     }
   }
 }

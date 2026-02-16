@@ -29,6 +29,8 @@ import {AnimationType} from '../../common/classes/AnimationType';
 })
 export class Home implements AfterViewInit {
   @ViewChild("mobileButton") mobileButton: MatFabButton | undefined;
+  @ViewChild("darkModeButton") darkModeButton: MatFabButton | undefined;
+  @ViewChild("selfMadeButton") selfMadeButton: MatFabButton | undefined;
 
   protected readonly titleWords: string[] = [
     'pixel',
@@ -39,6 +41,12 @@ export class Home implements AfterViewInit {
   protected activeTitleWord: Observable<string> | undefined;
 
   protected featuredProject: Project | undefined;
+
+  protected darkModeButtonStatus: boolean = false;
+
+  protected selfMadeColors: string[] = ["#ecdcff", "#ff9900", "#000000", "#ffffff", "#645b70"];
+  protected selfMadeColorActiveIndex: number = 0;
+  protected selfMadePressed: boolean = false;
 
   constructor(
     private readonly projectService: ProjectService,
@@ -67,6 +75,31 @@ export class Home implements AfterViewInit {
         nativeElement: this.mobileButton._elementRef.nativeElement,
         animationType: AnimationType.Wobble,
         duration: 0.5
+      });
+    }
+  }
+
+  protected darkModeButtonClick() {
+    this.darkModeButtonStatus = !this.darkModeButtonStatus;
+    if (this.darkModeButton) {
+      this.animationHandler.playOnce({
+        nativeElement: this.darkModeButton._elementRef.nativeElement,
+        animationType: AnimationType.RotationFull,
+      });
+    }
+  }
+
+  protected selfMadeButtonClick() {
+    this.selfMadePressed = true;
+    if (this.selfMadeColorActiveIndex == this.selfMadeColors.length - 1) {
+      this.selfMadeColorActiveIndex = 0;
+    } else {
+      this.selfMadeColorActiveIndex++;
+    }
+    if (this.selfMadeButton) {
+      this.animationHandler.playOnce({
+        nativeElement: this.selfMadeButton._elementRef.nativeElement,
+        animationType: AnimationType.Turn180,
       });
     }
   }

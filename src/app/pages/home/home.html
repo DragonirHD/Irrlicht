@@ -127,16 +127,44 @@
 
   <div #contentPane class="content-pane">
     <div class="fab-overlay">
-      <button
-        #mobileButton
-        matFab
-        extended
-        class="fab-mobile"
-        (click)="mobileButtonClick()"
-      >
-        <mat-icon fontSet="material-symbols-outlined">mobile_check</mat-icon>
-        Mobile<br>Friendly
-      </button>
+      <div class="fab-overlay__row">
+        <button
+          [style.color]="selfMadePressed && selfMadeColors[selfMadeColorActiveIndex]"
+          [style.background-color]="selfMadePressed && selfMadeColors[selfMadeColorActiveIndex + 1]"
+          #selfMadeButton
+          matFab
+          extended
+          (click)="selfMadeButtonClick()"
+        >
+          <mat-icon fontSet="material-symbols-outlined">brush</mat-icon>
+          Self<br>Made
+        </button>
+
+        <button
+          #mobileButton
+          matFab
+          extended
+          (click)="mobileButtonClick()"
+        >
+          <mat-icon fontSet="material-symbols-outlined">mobile_check</mat-icon>
+          Mobile<br>Friendly
+        </button>
+
+        <button
+          #darkModeButton
+          matFab
+          extended
+          (click)="darkModeButtonClick()"
+        >
+          @if (darkModeButtonStatus) {
+            <mat-icon fontSet="material-symbols-outlined">light_mode</mat-icon>
+            Light<br>Mode
+          } @else {
+            <mat-icon fontSet="material-symbols-outlined">dark_mode</mat-icon>
+            Dark<br>Mode
+          }
+        </button>
+      </div>
     </div>
 
     <p #contentPaneText
