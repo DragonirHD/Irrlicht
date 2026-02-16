@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {ObserveVisibilityDirective} from '../../common/directives/observe-visibility-directive';
 import {PixelsOverlay} from '../../common/components/pixels-overlay/pixels-overlay';
 import {Observable} from 'rxjs';
@@ -8,6 +8,10 @@ import {ProjectService} from '../../services/project-service';
 import {Project} from '../../common/classes/Project';
 import {TypewriterService} from '../../services/typewriter.service';
 import {RouterLink} from '@angular/router';
+import {MatFabButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
+import {AnimationHandler} from '../../services/animation-handler';
+import {AnimationType} from '../../common/classes/AnimationType';
 
 @Component({
   selector: 'home',
@@ -18,10 +22,13 @@ import {RouterLink} from '@angular/router';
     AsyncPipe,
     CardSelector,
     RouterLink,
+    MatFabButton,
+    MatIcon,
   ],
   styleUrl: './home.scss'
 })
 export class Home implements AfterViewInit {
+  @ViewChild("mobileButton") mobileButton: MatFabButton | undefined;
 
   protected readonly titleWords: string[] = [
     'pixel',
@@ -36,6 +43,7 @@ export class Home implements AfterViewInit {
   constructor(
     private readonly projectService: ProjectService,
     private readonly typewriterService: TypewriterService,
+    private readonly animationHandler: AnimationHandler,
   ) {
 
   }
@@ -51,5 +59,15 @@ export class Home implements AfterViewInit {
 
   protected contentPaneVisible(contentPane: HTMLElement) {
     contentPane.classList.add('animation__fadeIn-up');
+  }
+
+  protected mobileButtonClick() {
+    if (this.mobileButton) {
+      this.animationHandler.playOnce({
+        nativeElement: this.mobileButton._elementRef.nativeElement,
+        animationType: AnimationType.Wobble,
+        duration: 0.5
+      });
+    }
   }
 }

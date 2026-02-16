@@ -45,6 +45,34 @@
   }
 }
 
+.fab-overlay {
+  position: relative;
+  top: -45px;
+
+  button {
+    position: absolute;
+    display: flex;
+    left: 65dvw;
+    height: fit-content;
+    flex-direction: column;
+    align-content: center;
+    padding-block: 10px;
+    scale: 150%;
+
+    mat-icon {
+      scale: 120%;
+      margin: unset;
+      padding-bottom: 10px;
+    }
+  }
+
+  @media only screen and (max-width: customVariables.$mobile-max-width) {
+    button {
+      scale: 80%;
+    }
+  }
+}
+
 .featured-project {
 
   &__image-wrapper {

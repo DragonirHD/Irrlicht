@@ -23,15 +23,14 @@
           [debounceTime]="0"
           (visible)="contentPaneVisible($event)"
       >
-        This website is a place for me to upload and document my projects.
+        This website is a place for me to upload and record my projects.
         <br>
         <br>
-        There's currently not much around, but I intend to keep expanding this page, to maybe use it in the future as
-        homepage for a game studio. If you see some mismatched text, that's just preparation for the switch from private
-        homepage to game studio page.
+        I intend to document all of my works here to have a collection of them and show how I improve with each new
+        piece.
         <br>
         <br>
-        While you're already here, make sure to check out some of my <a [routerLink]="['projects']">projects</a> and
+        While you're here, make sure to check out some of my <a [routerLink]="['projects']">projects</a> and
         explore the website a bit.
         <br>
         <br>
@@ -43,18 +42,18 @@
     </div>
   </div>
 
-  <div #contentPane class="content-pane content-pane--block-title">
-    <p #contentPaneText
-       class="content-pane__header--accent"
-       observeVisibility
-       [debounceTime]="0"
-       (visible)="contentPaneVisible($event)"
-    >
-      Featured Project
-    </p>
-  </div>
-
   @if (featuredProject) {
+    <div #contentPane class="content-pane content-pane--block-title">
+      <p #contentPaneText
+         class="content-pane__header"
+         observeVisibility
+         [debounceTime]="0"
+         (visible)="contentPaneVisible($event)"
+      >
+        Featured Project
+      </p>
+    </div>
+
     <div class="featured-project">
       <div class="featured-project__image-wrapper c-whitespace-container--wide">
         <img
@@ -90,8 +89,11 @@
           [debounceTime]="0"
           (visible)="contentPaneVisible($event)"
       >
-        We do not intend to limit ourselves to one singular style.
-        Our art direction changes case by case according to what we think would support the underlying gameplay best.
+        I do not intend to limit myself to one singular style.
+        <br>
+        <br>
+        The art direction changes case by case according to what I think would support the intended
+        gameplay / story / experience best.
       </h1>
     </div>
     <div class="content-pane__block content-pane__block--right">
@@ -108,7 +110,7 @@
        [debounceTime]="0"
        (visible)="contentPaneVisible($event)"
     >
-      Read more about our great <a [routerLink]="['team']">Team</a>
+      Read more about me and my <a [routerLink]="['team']">Team</a>
     </p>
   </div>
 
@@ -119,11 +121,24 @@
        [debounceTime]="0"
        (visible)="contentPaneVisible($event)"
     >
-      For requests or questions, get in touch with us <a [routerLink]="['contact']">here</a>
+      For requests or questions, get in touch with me <a [routerLink]="['contact']">here</a>
     </p>
   </div>
 
   <div #contentPane class="content-pane">
+    <div class="fab-overlay">
+      <button
+        #mobileButton
+        matFab
+        extended
+        class="fab-mobile"
+        (click)="mobileButtonClick()"
+      >
+        <mat-icon fontSet="material-symbols-outlined">mobile_check</mat-icon>
+        Mobile<br>Friendly
+      </button>
+    </div>
+
     <p #contentPaneText
        class="content-pane__header"
        observeVisibility
@@ -138,11 +153,11 @@
        [debounceTime]="0"
        (visible)="contentPaneVisible($event)"
     >
-      <b>This website is being made with Angular and Angular Material.</b>
+      <b>This website is made with Angular and Angular Material.</b>
       <br>
       <br>
-      The components are all mostly made in house and without any code written by AI. This is done to build up and
-      increase our own knowledge about web design and to give the website a unique and custom feel.
+      The components are all mostly made by me without any code written by AI. This is done to build up some
+      extra skills and gather additional knowledge about web design and to give the website a unique and custom feel.
       <br>
       <br>
       The website is built with a responsive design that supports mobile devices of sizes down to 360px and also comes
